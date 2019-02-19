@@ -8,7 +8,12 @@ using namespace std;
 class Triple {
 public:
 	double x, y, z;
-	void think(double x, double y, double z) {
+	void think(double x, double y, double z);
+
+};
+
+void Triple::think(double x, double y, double z)
+	{
 		if ((x + y < z) | (x + z < y) | (z + y < x)) {
 			cout << "Треугольник не существует\n";
 		}
@@ -24,13 +29,12 @@ public:
 			if (x*x + y * y == z * z | x * x + z * z == y * y | z * z + y * y == x * x) {
 				cout << "Треугольник прямоугольний\n";
 			}
+
 			cout << "Периметр треугольника равен: " << x + z + y << endl;
 			double p = (x + y + z) / 2;
 			cout << "Площадь треугольника равна: " << sqrt(p*(p - x)*(p - y)*(p - z)) << endl;
 		}
 	}
-
-};
 
 
 int main() {
