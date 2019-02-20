@@ -59,6 +59,6 @@ bool Triangle::triangle() {
 }
 
 void Triangle::Set() {
-	cout << "¬ведите стороны треугольника a b c:\n";
+	cout << "¬ведите стороны треугольника  a b c:\n";
 	cin >> a >> b >> c;
 }
