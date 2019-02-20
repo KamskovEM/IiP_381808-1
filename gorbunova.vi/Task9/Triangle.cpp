@@ -10,21 +10,19 @@ using namespace std;
 
 class Triangle
 {
-
+	double a, b, c;
+	double p, s;
 public:
 	Triangle() { a = b = c = p = s = 0; };
 	void Set();
 	bool triangle();
-	void P();
-	void S();
+	double P();
+	double S();
 	void Show();
 
-private:
-	int a, b, c;
-	int p, s;
 };
 
-int main()
+int main(void)
 {
 	setlocale(LC_ALL,"rus");
 	Triangle Obj;
@@ -44,14 +42,18 @@ int main()
 
 void Triangle::Show() {
 	cout << "Стороны Треугольника:" << endl << "a = " << a << endl << "b = " << b << endl << "c = " << c << endl;
-	cout << "Периметр = " << p << endl;
-	cout << "Площадь = " << s;
+	cout << "Периметр = " << P() << endl;
+	cout << "Площадь = " << S();
 }
-void Triangle::P() {
-	p = a + b + c;
+double Triangle::P() 
+{
+	return a + b + c;
 }
-void Triangle::S() {
-	s = sqrt(p*(p - a)*(p - b)*(p - c));
+double Triangle::S() 
+{
+	double p;
+	p = P()/2;
+	return sqrt(p*(p - a)*(p - b)*(p - c));
 }
 bool Triangle::triangle() {
 	if ((a + b) <= c || (a + c) <= b || (b + c) <= a)return false;
