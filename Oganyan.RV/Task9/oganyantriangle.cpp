@@ -1,9 +1,9 @@
-#include <iostream> 
-#include <vector> 
-#include <cmath> 
-#include <stdexcept> 
-#include <cstdlib> 
-#include <ctime> 
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <stdexcept>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 class Triangle {
@@ -13,84 +13,77 @@ private:
 
 public:
 
-	Triangle();
-	Triangle(int a, int b, int c);
-	~Triangle();
-	bool checkIfTriangle();
-	double cosinusfun(double a, double b, double c);
-	const char* checkTriangleType();
-	const char* checkTriangleTypetwo();
-	double squareoftriangle();
-};
-Triangle::Triangle() { //конструктор
-	this->sideA = 0;
-	this->sideB = 0;
-	this->sideC = 0;
-}
-// this в данном случае можно было бы не писать
-Triangle::Triangle(int a, int b, int c) { //конуструктор, если значения будут неположительными, то они станут равны 0
-	if (a < 0 || b < 0 || c < 0) {
+	Triangle() { //конструктор
 		this->sideA = 0;
 		this->sideB = 0;
 		this->sideC = 0;
 	}
-	else {
-		this->sideA = a;
-		this->sideB = b;
-		this->sideC = c;
-	}
-}
-
-Triangle::~Triangle() {}; //деструктор	
-bool Triangle::checkIfTriangle() {
-	if (sideA + sideB > sideC && sideC + sideB > sideA && sideA + sideC > sideB)
-		return true;
-	else return false;
-}
-double Triangle::cosinusfun(double a, double b, double c) {
-	double cosinus = (c*c + b * b - a * a) / (2.0 * b*c);
-	return cosinus;
-}
-const char* Triangle::checkTriangleType() {
-	if (!checkIfTriangle()) {
-		return "Треугольник не существует";
-	}
-	else {
-		if (sideA == sideB && sideB == sideC)
-			return "Равносторонний треугольник";
-		else if (sideA == sideB || sideB == sideC || sideC == sideA)
-			return "Равнобедренный треугольник";
-		else
-			return "Разносторонний треугольник";
-	}
-}
-const char* Triangle::checkTriangleTypetwo() {
-	if (!checkIfTriangle()) {
-		return "Треугольник не существует";
-	}
-	else {
-		if ((cosinusfun(sideA, sideB, sideC) == 0) || (cosinusfun(sideB, sideC, sideA) == 0) || (cosinusfun(sideC, sideA, sideB) == 0))
-		{
-			return "Прямоугольный треугольник";
+	// this в данном случае можно было бы не писать
+	Triangle(int a, int b, int c) { //конуструктор, если значения будут неположительными, то они станут равны 0
+		if (a < 0 || b < 0 || c < 0) {
+			this->sideA = 0;
+			this->sideB = 0;
+			this->sideC = 0;
 		}
-		else
-		{
-			if ((cosinusfun(sideA, sideB, sideC) < 0) || (cosinusfun(sideB, sideC, sideA) < 0) || (cosinusfun(sideC, sideA, sideB) < 0))
+		else {
+			this->sideA = a;
+			this->sideB = b;
+			this->sideC = c;
+		}
+	}
+	~Triangle() {}; //деструктор	
+
+	bool checkIfTriangle() {
+		if (sideA + sideB > sideC && sideC + sideB > sideA && sideA + sideC > sideB)
+			return true;
+		else return false;
+	}
+	double cosinusfun(double a, double b, double c) {
+		double cosinus = (c*c + b * b - a * a) / (2.0 * b*c);
+		return cosinus;
+	}
+	const char* checkTriangleType() {
+		if (!checkIfTriangle()) {
+			return "Треугольник не существует";
+		}
+		else {
+			if (sideA == sideB && sideB == sideC)
+				return "Равносторонний треугольник";
+			else if (sideA == sideB || sideB == sideC || sideC == sideA)
+				return "Равнобедренный треугольник";
+			else
+				return "Разносторонний треугольник";
+		}
+	}
+	const char* checkTriangleTypetwo() {
+		if (!checkIfTriangle()) {
+			return "Треугольник не существует";
+		}
+		else {
+			if ((cosinusfun(sideA, sideB, sideC) == 0) || (cosinusfun(sideB, sideC, sideA) == 0) || (cosinusfun(sideC, sideA, sideB) == 0))
 			{
-				return "Тупоугольный треугольник";
+				return "Прямоугольный треугольник";
 			}
 			else
 			{
-				return "Остроугольный треугольник";
+				if ((cosinusfun(sideA, sideB, sideC) < 0) || (cosinusfun(sideB, sideC, sideA) < 0) || (cosinusfun(sideC, sideA, sideB) < 0))
+				{
+					return "Тупоугольный треугольник";
+				}
+				else
+				{
+					return "Остроугольный треугольник";
+				}
 			}
 		}
 	}
-}
-double Triangle::squareoftriangle() {
-	double p = (sideA + sideB + sideC) / 2.0;
-	double square = sqrt(p*(p - sideA)*(p - sideB)*(p - sideC));
-	return square;
-}
+	double squareoftriangle() {
+		double p = (sideA + sideB + sideC) / 2.0;
+		double square = sqrt(p*(p - sideA)*(p - sideB)*(p - sideC));
+		return square;
+	}
+};
+
 int main() {
 	setlocale(LC_CTYPE, "Russian");
 	Triangle test1(-1, -2, -3);
@@ -115,6 +108,7 @@ int main() {
 	getchar();
 	getchar();
 }
+
 
 
 
