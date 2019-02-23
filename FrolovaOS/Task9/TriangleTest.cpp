@@ -1,16 +1,18 @@
-#include <iostream>
-#include <cmath>
-#include <clocale>
+#include <iostream> 
+#include <cstdlib> 
+
+#include <string> 
+#include <cmath> 
 using namespace std;
 class triangle {
 public:
 	void tri(double a, double b, double c);
-	bool exist();
+	bool exist();//проверка, существует ли треугольник
 	double perimetr();
 	double square();
-	void Type();
+	int Type();//тип треугольника, 1 - прямоугольный, 2-остроугольный 3-тупоугольный
 private:
-	double A, B, C;
+	double A, B, C;// стороны треугольника
 };
 
 void triangle::tri(double a, double b, double c)
@@ -19,15 +21,15 @@ void triangle::tri(double a, double b, double c)
 	B = b;
 	C = c;
 }
-void triangle::Type()
+int triangle::Type()
 {
 	double h, a, b;
 	if ((A > B) && (A > C)) { h = A; a = B; b = C; }
 	else if ((B >= A) && (B >= C)) { h = B; a = A; b = C; }
 	else if ((C > B) && (C > A)) { h = C; a = A; b = B; }
-	if (h*h == a * a + b * b) { cout << " Треугольник - прямоугольный" << endl; }
-	if (h*h < a * a + b * b) { cout << " Треугольник - остроугольный" << endl; }
-	if (h*h > a * a + b * b) { cout << " Треугольник - тупоугольный" << endl; }
+	if (h*h == a * a + b * b) { return 1; }
+	if (h*h < a * a + b * b) { return 2; }
+	if (h*h > a * a + b * b) { return 3; }
 
 }
 bool triangle::exist()
@@ -54,10 +56,12 @@ double triangle::square()
 
 }
 
+
+
 int main()
 {
-	setlocale(LC_CTYPE, "rus");
-	cout << "Введите длины сторон треугольника  \n";
+
+	cout << "Enter the lengths of the sides of the triagle \n";
 	triangle p;
 	double a, b, c;
 	cin >> a >> b >> c;
@@ -65,14 +69,13 @@ int main()
 	bool q = p.exist();
 	if (q == 1)
 	{
-		cout << "Треугольник существует \n";
+		cout << "Triagle exists \n";
 		p.Type();
-		cout << "Периметр треугольника = " << p.perimetr() << "\n";
-		cout << "Площадь  треугольника = " << p.square() << "\n";
+		cout << "Perimeter of the triangle = " << p.perimetr() << "\n";
+		cout << "Area of the the triangle = " << p.square() << "\n";
 	}
-	else 		cout << "Такого треугольника не существует \n";
+	else cout << "Such Triangle do not exists \n"; 
 
-	getchar();
-	getchar();
+	
 	return 0;
 }
