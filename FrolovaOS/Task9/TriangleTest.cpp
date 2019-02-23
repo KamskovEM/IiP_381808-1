@@ -7,7 +7,7 @@ using namespace std;
 class triangle {
 public:
 	void tri(double a, double b, double c);
-	bool exist();//проверка, существует ли треугольник
+	bool exist();//проверка, существует ли треугольник?
 	double perimetr();
 	double square();
 	int Type();//тип треугольника, 1 - прямоугольный, 2-остроугольный 3-тупоугольный
