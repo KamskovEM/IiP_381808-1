@@ -4,6 +4,7 @@
 #include "Vector3D.h"
 using namespace std;
 
+// @ZlobinGM Task1
 int main(int argc, char *argv[])
 {
 	setlocale(LC_CTYPE, "Russian");
@@ -52,3 +53,4 @@ int main(int argc, char *argv[])
 	system ("pause");
 	return 0;
 }
+// @ZlobinGM Task1
