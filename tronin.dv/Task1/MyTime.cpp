@@ -175,7 +175,7 @@ bool MyTime::operator!=(const MyTime& c) const
 
 
 
-std::ostream& operator<<(std::ostream& stream,  MyTime& c)
+std::ostream& operator<<(std::ostream& stream,  const MyTime& c)
 {	
 	stream << c.GetString();
 	return stream;

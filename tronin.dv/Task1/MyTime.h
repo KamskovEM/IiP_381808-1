@@ -37,7 +37,7 @@ public:
 	bool operator>(const MyTime&) const;
 	bool operator<(const MyTime&) const;
 
-	friend std::ostream& operator<<(std::ostream&,  MyTime&);
+	friend std::ostream& operator<<(std::ostream&, const MyTime&);
 	friend std::istream& operator>>(std::istream&,  MyTime&);
 
 
@@ -50,6 +50,6 @@ private:
 };
 
 std::istream& operator>>(std::istream&,  MyTime&);
-std::ostream& operator<<(std::ostream&,  MyTime&);
+std::ostream& operator<<(std::ostream&, const  MyTime&);
 
 
