@@ -21,21 +21,21 @@ public:
 	~MyTime();
 
 	//Zapros strochnogo predstavleniya
-	char* ToString();
+	const char* GetString() const;
 
 	//Metod dostupa--------------------------
-	unsigned char GetH() { return h; };
-	unsigned char GetM() { return m; };
-	unsigned char GetS() { return s; };
+	unsigned char GetH() const  { return h; };
+	unsigned char GetM() const  { return m; };
+	unsigned char GetS() const  { return s; };
 
 	//Peregruzka operacii---------------------
 	MyTime operator+(const MyTime&);
 	MyTime operator-(const MyTime&);
 	MyTime& operator=(const MyTime&);
-	bool MyTime::operator==(const MyTime&);
-	bool MyTime::operator!=(const MyTime&);
-	bool operator>(const MyTime&);
-	bool operator<(const MyTime&);
+	bool operator==(const MyTime&) const;
+	bool operator!=(const MyTime&) const;
+	bool operator>(const MyTime&) const;
+	bool operator<(const MyTime&) const;
 
 	friend std::ostream& operator<<(std::ostream&,  MyTime&);
 	friend std::istream& operator>>(std::istream&,  MyTime&);
@@ -46,6 +46,7 @@ private:
 	unsigned char h, m, s;
 	char str[9];
 	unsigned char Parse(const char*);		//Perevod iz strokovogo predstavleniya
+	void ToString();
 };
 
 std::istream& operator>>(std::istream&,  MyTime&);

@@ -6,6 +6,7 @@
 MyTime::MyTime()
 {
 	h = m = s = 0;
+	ToString();
 }
 
 
@@ -14,6 +15,7 @@ MyTime::MyTime(unsigned char h, unsigned char m, unsigned char s)
 	this->h = h;
 	this->m = m;
 	this->s = s;
+	ToString();
 }
 
 MyTime::MyTime(const MyTime& t)
@@ -21,6 +23,7 @@ MyTime::MyTime(const MyTime& t)
 	h = t.h;
 	m = t.m;
 	s = t.s;
+	ToString();
 }
 
 MyTime::MyTime(const char* c)
@@ -28,6 +31,7 @@ MyTime::MyTime(const char* c)
 	h = Parse(c);
 	m = Parse(c + 3);
 	s = Parse(c + 6);
+	ToString();
 }
 
 MyTime::~MyTime()
@@ -35,7 +39,12 @@ MyTime::~MyTime()
 	h = m = s = 0;
 }
 
-char* MyTime::ToString()
+const char* MyTime::GetString() const 
+{	
+	return str;
+}
+
+void MyTime::ToString()
 {
 	str[0] = (char)(h / 10 + '0');
 	str[1] = (char)(h % 10 + '0');
@@ -45,8 +54,7 @@ char* MyTime::ToString()
 	str[5] = '.';
 	str[6] = (char)(s / 10 + '0');
 	str[7] = (char)(s % 10 + '0');
-	str[8] = '\0';	
-	return str;
+	str[8] = '\0';
 }
 
 unsigned char MyTime::Parse(const char* str)
@@ -120,17 +128,21 @@ MyTime MyTime::operator-(const MyTime& c)
 
 MyTime& MyTime::operator=(const MyTime& c)
 {
-	if (*this != c)
+	if (this != &c)
 	{
 		h = c.h;
 		m = c.m;
 		s = c.s;
+		for (int i = 0; i < 9; i++)
+		{
+			str[i] = c.str[i];
+		}
 	}
 	return *this;
 }
 
 
-bool MyTime::operator>(const MyTime& c)
+bool MyTime::operator>(const MyTime& c) const
 {
 	if (h < c.h) return false;
 	if (m < c.h) return false;
@@ -138,7 +150,7 @@ bool MyTime::operator>(const MyTime& c)
 	return true;	
 }
 
-bool MyTime::operator<(const MyTime& c)
+bool MyTime::operator<(const MyTime& c) const
 {
 	if (h > c.h) return false;
 	if (m > c.h) return false;
@@ -146,14 +158,14 @@ bool MyTime::operator<(const MyTime& c)
 	return true;
 }
 
-bool MyTime::operator==(const MyTime& c)
+bool MyTime::operator==(const MyTime& c) const
 {
 	if (h == c.h && m == c.m && s == c.m) return true;
 	return false;
 }
 
 
-bool MyTime::operator!=(const MyTime& c)
+bool MyTime::operator!=(const MyTime& c) const
 {
 	if (h != c.h) return true;
 	if (m != c.m) return true;
@@ -165,7 +177,7 @@ bool MyTime::operator!=(const MyTime& c)
 
 std::ostream& operator<<(std::ostream& stream,  MyTime& c)
 {	
-	stream << c.ToString();
+	stream << c.GetString();
 	return stream;
 }
 	
