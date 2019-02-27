@@ -27,8 +27,11 @@ public:
 	Decimal operator+(const Decimal& Dcm);
 	Decimal operator-(const Decimal& Dcm);
 
-	// Constructor 
+	// Constructors
+	//INICIALIZATOR AND PRIVIDENIE TIPA
 	Decimal(int razmer);
+	// PO UMOLCHANIU
+	Decimal(void);
 	// Destructor
-	~Decimal();
+	~Decimal(void);
 };

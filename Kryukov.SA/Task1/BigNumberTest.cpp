@@ -11,17 +11,24 @@ int main()
 	int one;
 	cout << "length first number " << endl;
 	cin >> one;
-	Decimal DFirs(one);
+	Decimal DFirs(one);//set the sizes
 	cout << "VVOD number " << endl;
 	cin >> DFirs;
 	int two;
 	cout << "length  second number " << endl;
 	cin >> two;
-	Decimal DSec(two);
+	Decimal DSec(two);//set the sizes
 	cout << "VVOD number " << endl;
 	cin >> DSec;
+
 	//operathion---------------------------
-    Decimal Dec(one);
+	int K;
+	if (one >= two)//choose the desired size
+		 K = one;
+	else
+		K = two;
+
+    Decimal Dec(K);
 	Dec = DFirs + DSec;
 	cout << " sum= " << Dec << endl;
 	Dec = DFirs - DSec;

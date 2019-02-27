@@ -7,6 +7,7 @@
 //opisanie/////////////////////////////////////////////////////////////////////////////////////
 using namespace std;
 // input and output to stream------------------------------------------
+
 ostream& operator<<(ostream& Ostream, const Decimal& Dcm)
 {
 	for (int j = Dcm.lgth - 1; j >= 0; j--) 
@@ -303,15 +304,20 @@ Decimal Decimal::operator-(const Decimal& Dcm)
 
 
 // Constructor ----------------------
+Decimal::Decimal(void)
+{
+	lgth = NULL;
+}
 Decimal::Decimal(int razmer)
 {
 	lgth = razmer;
 	num = new unsigned char[lgth];
 }
+
 // Destructor------------------------------------
-Decimal::~Decimal()
+Decimal::~Decimal(void)
 {
-	lgth = NULL;
+	
 	delete[] num;
 	num = NULL;
 }
