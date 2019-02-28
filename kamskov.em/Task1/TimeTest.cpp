@@ -29,7 +29,7 @@ int main()
 	cout << time1 << " + " << timetest << " = " << time1 + timetest << endl; // slojenie vremeni 'time1' i 'timetest'
 	cout << time1 << " - " << timetest << " = " << time1 - timetest << endl; // slojenie vremeni 'time1' i 'timetest'
 
-	if (time1 > time2 && time1 != time2) // operatori sravneniya
+	if (time1 > time2) // operatori sravneniya
 	{
 		cout << time1 << " > " << time2 << endl;
 	}
