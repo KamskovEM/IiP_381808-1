@@ -7,8 +7,6 @@
 using namespace std;
 
 
-
-
 int main()
 {
 	Money a, b, c;
