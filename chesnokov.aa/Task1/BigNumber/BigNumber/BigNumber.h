@@ -2,8 +2,8 @@
 #include <string>
 #include <iostream>
 /*
- * большое (32+32 бит) беззнаковое число
- * выводит/вводит числа в системе счисления основания 16 или 2
+ * bol`shoe (32+32 bit) bezznakovoe chislo
+ * vvod/vivod v 16-oi ili 2-oi sisteme
  */
 enum PrintType
 {
@@ -13,39 +13,39 @@ enum PrintType
 class BigNumber
 {
 private:
-	int m_upper_part;  // старшая часть числа (32 бит)
-	int m_lower_part;  // младшая часть числа (32 бит)
-	PrintType pt;      // каким образом выводить на экран (с оснвание 2 или 16)
+	int m_upper_part;  // starshaya chast`
+	int m_lower_part;  // mladshaya chast`
+	PrintType pt;      // Binar ili Hex
 
 public:
-	// нумерация позиций начинается с 0 (от 0 до 63)
-    // возвращает бит в posotion позиции 
+
+	// neymeracia ot 0 do 63
 	bool GetBit(int position) const;
-	// устанавливает значение b в указанной позиции
+	
 	void SetBit(int position, bool b);
-	// устанавливает тип вывода
+	// ystanavlivaet tip vivoda
 	void SetPrintType(PrintType _pt) { pt = _pt; }
 private:
-	// полусумматор
+	// polysymmator
 	void HalfAdder(
-		bool inA,       // вход А
-		bool inB,       // вход B
-		bool& outSum,   // выход суммы
-		bool& outC      // выход перенос разряда
+		bool inA,       // vhod A
+		bool inB,       // vhod B
+		bool& outSum,   // vihod symmi
+		bool& outC      // vihod perenosa razryada
 	);   
-	// полный сумматор
+	// polnii symmator
 	void Adder(
-		bool inC,      // вход переноса разряда
+		bool inC,      // vhod perenosa razryada
 		bool inA,
 		bool inB,
 		bool& outSum,
 		bool& outC
 	);
-	// нахождение обратного числа (-num)
+	// obratnoe chislo (-num)
 	BigNumber Invert() const;
-	// перегруженные операции
+	// peregryzhenie operacii
 public:
-	// операции сравнения
+	
 	friend bool operator==(const BigNumber numL, const BigNumber numR);
 	friend bool operator!=(const BigNumber numL, const BigNumber numR);
 	BigNumber operator+(const BigNumber& num);
@@ -55,18 +55,18 @@ public:
 	bool operator<=(const BigNumber num) { return !(*this > num); }
 	bool operator>=(const BigNumber num) { return !(*this < num); }
 
-	// реализация умножения путём сложения
+	// realizaciya ymnojeniya pytem slojeniya
 	BigNumber operator*(const BigNumber& num);
-	// реализация деления вычитанием
+	// realizaciya deleniya vichitaniem
 	BigNumber operator/(const BigNumber& num);
 	BigNumber& operator=(const BigNumber& num);
 	friend std::ostream& operator<< (std::ostream& out, const BigNumber& num);
 
 public:
-	//конструкторы
+	// Konstryktori
 	BigNumber();
-	// конструирует из строкового представления числа в 16-ой системе
-	// невмещающуюся слева часть отбрасывает
+	// konstryiryet iz strokovogo preadstavleniya chisla v 16-oi sisteme
+	// nevmeshaushyusya sleva chast` otbrasivaet
 	BigNumber(std::string HexNum); 
 	~BigNumber();
 };

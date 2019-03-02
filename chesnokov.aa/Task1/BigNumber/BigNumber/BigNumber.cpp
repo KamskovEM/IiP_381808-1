@@ -2,7 +2,7 @@
 #include <limits>
 #include "math.h"
 
-// исключающее или
+// isklyuchaushee ili
 bool XOR(bool a, bool b)
 {
 	return (a || b) && (!(a && b));
@@ -10,37 +10,36 @@ bool XOR(bool a, bool b)
 
 bool BigNumber::GetBit(int position) const
 {
-	if (position <= 31)  // если принадлежит младшей части 
+	if (position <= 31)  // esli prinadlejit mladshei chasti 
 	{
-		// побитово сдвинуть на position позиций вправо
-		// побитовое И полученного числа с маской вида 0000...001
-		// вернет значение указанного бита
+		// pobitovo sdvinyt` na position pozicii vpravo
+		// pobitovoe I polychennogo chisla s maskoi vida 0000...001
+		// dast znachenie ykazanogo bita
 		return (m_lower_part >> position) & 1;
 	}
-	else if (position <= 63)  // если принадлежит старшей части 
+	else if (position <= 63)  // esli prinadlejit starshey chasti
 	{
-		// аналогично со старшей частью
 		return (m_upper_part >> (position - 32)) & 1;
 	}
-	// любой бит вне числа нулевой
+	// luboi bit vne chisla nylevoi
 	return false;
 }
 
-// при выходе за границы числа, оно не изменяется
+// pri vihode za granici, chislo ne izmenitsya
 void BigNumber::SetBit(int position, bool b)
 {
-	if (position <= 31)   //младшая часть
+	if (position <= 31)
 	{
-		if (b)  // если нужно установить 1
+		if (b)  // esli nyzhno ystanovit` 1
 		{
-			// побитовое ИЛИ числа с маской типа 000..00100..0
-			// где 1 занимает позицию position в результате установит 1 в нужное место
+			// pobitovoe ILI s msakoi tipa 000..00100..0,
+			// gde 1 zanimaet poziciu position, ystanovit 1 v nyzhnoe mesto
 			m_lower_part = m_lower_part | (int) pow(2, position);
 		}
-		else // если нужно установить 0
+		else // esli nyzhno ystanovit` 0
 		{
-			// побитовое И числа с маской типа 111..11011..111
-			// где 0 стоит в позиции position установит 0 в нужное место
+			// pobitovoe I s maskoi tipa 111..11011..111,
+			// gde 0 stoit v pozicii position, ystanovit 0 v neznoe mesto
 			m_lower_part = m_lower_part & ( std::numeric_limits<int>::max() - (int) pow(2,position));
 		}
 	}
@@ -76,18 +75,18 @@ BigNumber BigNumber::Invert() const
 	BigNumber res;
 	for (int i = 0; i < 64; i++)
 	{
-		// инвертируем все биты
+		// invertiryem vse biti
 		res.SetBit(i, !(this->GetBit(i)));
 	}
-	res = res + BigNumber("1");  // увеличим на 1
+	res = res + BigNumber("1");  // yvelichim na 1
 	return res;
 }
 
 BigNumber BigNumber::operator+(const BigNumber & num)
 {
 	BigNumber res;
-	bool carry = false;   // перенос разряда
-	bool sum = false;     // значение для текующего бита
+	bool carry = false;   // perenos razryada
+	bool sum = false;     // znachenie dlya tekyshego bita
 	for (int i = 0; i < 64; i++)
 	{
 		Adder(carry, this->GetBit(i), num.GetBit(i), sum, carry);
@@ -126,7 +125,7 @@ bool BigNumber::operator>(const BigNumber num)
 
 BigNumber BigNumber::operator*(const BigNumber & num)
 {
-	// умножение на 0
+	// ymnozhenie na 0
 	if (((*this) == BigNumber("0")) || (num == BigNumber("0"))) return BigNumber("0");
 	BigNumber i("1"), res("0");
 	res = *this;
@@ -140,7 +139,7 @@ BigNumber BigNumber::operator*(const BigNumber & num)
 BigNumber BigNumber::operator/(const BigNumber & num)
 {
 	if (num == BigNumber("0")) throw "Dividing by zero exception";
-	BigNumber res("0");   // cчетчик
+	BigNumber res("0");   // schetchik
 	BigNumber tmp;
 	tmp = *this;
 	while (tmp >= num)
@@ -153,7 +152,7 @@ BigNumber BigNumber::operator/(const BigNumber & num)
 
 BigNumber & BigNumber::operator=(const BigNumber & num)
 {
-	// просто копирование соответствующих битов из одного числа в другое
+	// prosto kopirovanie bitov
 	for (int i = 0; i < 64; i++)
 	{
 		SetBit(i, num.GetBit(i));
@@ -170,19 +169,19 @@ BigNumber::BigNumber()
 
 BigNumber::BigNumber(std::string HexNum)
 {
-	int symb; // текущий символ десятичным числом
-	// обнулить все биты
+	int symb; // tekyshii simvol desyatichim chislom
+	// obnylit` vse biti
 	m_lower_part = m_upper_part = 0;
 	pt = Hex;
 	int len = HexNum.length();
 	for (int i = len - 1; i >= 0; i--) 
-		//проходим по всем символам в строке в обратном порядке
+		// prohodim po vsem simvolam v obratnom poryadke
 	{
-		// находим число (переводим в десятичное число)
+		//nahodim chislo (perevodim v desyatichnoe)
 		if (HexNum[i] <= '9' && HexNum[i] >= '0') symb = HexNum[i] - '0';
 		else if (HexNum[i] <= 'F' && HexNum[i] >= 'A') symb = HexNum[i] - 'A' + 10;
-		else symb = 0;  // не является 16-ичным символом
-		// переводим в двоичную
+		else symb = 0;  // ne yavlyaetsy 16-im simvolom
+		// perevodim v 2-yu sistemy
 		int j = 0;
 		while (symb > 0)
 		{
@@ -193,13 +192,11 @@ BigNumber::BigNumber(std::string HexNum)
 	}
 }
 
-
 BigNumber::~BigNumber()
 {
 	m_lower_part = m_upper_part = 0;
 }
 
-// вывод на экран
 std::ostream& operator<< (std::ostream& out, const BigNumber& num)
 {
 	if (num.m_lower_part == 0 && num.m_upper_part == 0)
@@ -211,10 +208,10 @@ std::ostream& operator<< (std::ostream& out, const BigNumber& num)
 	switch (num.pt)
 	{
 	case (Binar):
-		// пропускаем незначащие нули
+		// propyskaem neznachashie biti
 		
 		while (!num.GetBit(i)) i--;
-		// первый пробел не ставится
+		// pervii probel ne stavitsya
 		out << num.GetBit(i);
 		i--;
 		for (; i >= 0; i--)
@@ -230,12 +227,14 @@ std::ostream& operator<< (std::ostream& out, const BigNumber& num)
 		}
 		break;
 	case (Hex):
-		// перевод в Hex путем перевода отдельных тетрад (полубайтов)
-		// пропускаем незначащие тетрады [0000]
-		int tet,     // счетчик тетрад, начиная с 1, справа налево (всего их 8*2 = 16)
-			offset,  // отступ от начала тетрады
-			sum;     // сумма текущей тетрады в десятичном представлении
-		char ch;     // hex цифра текущей тетрады
+		// perevod v Hex pytem perevoda otdel`nih tetrad (polybaitov)
+		// propysk neznachyashih tetrad [0000]
+
+		
+		int tet,     //schetchik tetrad
+			offset,  // otstyp ot nachala tetradi
+			sum;     // symma tekyshei tetradi
+		char ch;     // hex cifra tekyshei tetradi
 		for (tet = 16; tet >= 1; tet--)
 		{
 			sum = 0;
@@ -243,21 +242,21 @@ std::ostream& operator<< (std::ostream& out, const BigNumber& num)
 			{
 				sum += (int) num.GetBit(tet * 4 - offset - 1);
 			}
-			if (sum) break;  // если очередная тетрада не нулевая перестаем их пропускать 
+			if (sum) break;  // esli ocherednaya tetrada ne nylevaya perestayom propyskat`
 		}
-		// выводим оставшиеся тетрады
+		// vivod ostavshihsya tetrad
 		for (; tet >= 1; tet--)
 		{
 			sum = 0;
-			//высчитываем десятичное значение очередной тетрады
+			//vichislenie 10-ogo znachenia tetradi
 			for (offset = 0; offset <= 3; offset++)
 			{
-				if (num.GetBit(tet * 4 - offset - 1)) // если очередной бит не пустой
+				if (num.GetBit(tet * 4 - offset - 1)) // esli ocherednoi bit ne pystoi
 				{
 					sum +=(int) pow(2, 3 - offset);
 				}	
 			}
-			// находим соответствующий hex символ
+			// nahodim sootvetstvyushii simvol
 			if (sum >= 0 && sum <= 9)
 			{
 				ch = '0' + sum;
