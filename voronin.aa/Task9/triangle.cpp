@@ -92,5 +92,6 @@ int main() {
 	cout << "Площадь- ";
 	cout << A.s(A.a, A.b, A.c);
 	system("pause");
+
 	return 0;
 }
