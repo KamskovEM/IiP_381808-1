@@ -8,7 +8,7 @@ private:
 	
 	
 public:
-	
+	int a;
 	// Operation peregruzka---------------------------------------------------
 		// input and output to stream
 	friend ostream& operator<<(ostream& Ostream, const Decimal& Dcm);

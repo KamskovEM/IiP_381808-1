@@ -22,17 +22,17 @@ int main()
 	cin >> DSec;
 
 	//operathion---------------------------
-	int K;
-	if (one >= two)//choose the desired size
-		 K = one;
-	else
-		K = two;
+	//int K;
+	//if (one >= two)//choose the desired size
+	//	 K = one;
+	//else
+	//	K = two;
 
-    Decimal Dec(K);
-	Dec = DFirs + DSec;
-	cout << " sum= " << Dec << endl;
-	Dec = DFirs - DSec;
-	cout << " differ= " << Dec << endl;
+    Decimal Dec(one);
+	//Dec = 
+	cout << " sum= " <<  DFirs + DSec<< endl;
+//	Dec =;
+	cout << " differ= " <<  DFirs - DSec << endl;
 	///////////////////////////////
 	cout <<  " First Numder == Second Number ";
 	if (DFirs == DSec) 

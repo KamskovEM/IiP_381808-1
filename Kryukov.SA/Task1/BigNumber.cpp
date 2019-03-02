@@ -12,7 +12,7 @@ ostream& operator<<(ostream& Ostream, const Decimal& Dcm)
 {
 	for (int j = Dcm.lgth - 1; j >= 0; j--) 
 	{
-		Ostream << (int)Dcm.num[j];
+		Ostream << (int)Dcm.num[j]; //Ostream << endl;
 	}
 	return Ostream;
 }
@@ -201,26 +201,29 @@ bool Decimal::operator<(const Decimal& Dcm)
 }
 //prisvaivaniye--------------------------------
 Decimal& Decimal::operator=(const Decimal& Dcm)
+{ lgth = Dcm.lgth;
+if (this == &Dcm)
+return *this;
+if (Dcm.lgth > lgth)
 {
-	if (Dcm.lgth > lgth)
-		{
-		lgth = Dcm.lgth;
-		delete[] num;
-		num = new unsigned char[lgth];
-	}
-	int j = 0;
-	while (Dcm.num[j])
-	{
-		num[j] = Dcm.num[j];
-		j++;
-	}
-	return *this;
+	lgth = Dcm.lgth;
+	delete[] num;
+	num = new unsigned char[lgth];
+}
+int j = 0;
+while (Dcm.num[j])//else error
+{
+	num[j] = Dcm.num[j];
+	j++;
+}
+return *this;
 }
 //summa and difference---------------------------------------------------------------------
 Decimal Decimal::operator+(const Decimal& Dcm)
 {
 	int len = 0;
-	if (lgth > Dcm.lgth) 
+
+	if (lgth >= Dcm.lgth) 
 	{
 		len = lgth;
 	}
@@ -230,7 +233,7 @@ Decimal Decimal::operator+(const Decimal& Dcm)
 	}
 	else
 	{
-		if (num[lgth - 1] + Dcm.num[Dcm.lgth - 1] > 9)
+		if (num[lgth - 1] + Dcm.num[Dcm.lgth - 1] > 9 )//|| lgth < Dcm.lgth
 		{
 			len = lgth + 1;
 		}
@@ -240,11 +243,12 @@ Decimal Decimal::operator+(const Decimal& Dcm)
 		}
 	}
 	
-	Decimal Result(len);
+	Decimal Result(len);//INICIALIZATOR
 	int tmp = 0;
 	for (int j = 0; j < Result.lgth; j++) 
 	{
-		if (j < Dcm.lgth) {
+		if (j < Dcm.lgth && j<=len )//
+		{
 			Result.num[j] = (num[j] + Dcm.num[j] + tmp) % 10;
 			tmp = (num[j] + Dcm.num[j] + tmp) / 10;
 		}
@@ -256,68 +260,75 @@ Decimal Decimal::operator+(const Decimal& Dcm)
 	}
 	return Result;
 }
-//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
 Decimal Decimal::operator-(const Decimal& Dcm)
 {
-	Decimal Result(lgth);
-	for (int j = 0; j < lgth; j++)
+	Decimal Resul(lgth);
+	int tmp = 0;
+	int len = 0;
+
+	if (lgth >= Dcm.lgth)
 	{
-		Result.num[j] = num[j];
+		len = lgth;
 	}
-	if (lgth == Dcm.lgth) {
-		for (int i = 0; i < lgth; i++) 
-		{
-			if (num[i] != Dcm.num[i]) 
-			{
-				break;
-			}
-			else if (i == lgth - 1 && num[i] == Dcm.num[i])
-			{
-				Result.lgth = 1;
-				Result.num[0] = 0;
-			}
-		}
-	}
-	else 
+	else if (lgth < Dcm.lgth)
 	{
-		for (int j = 0; j < Result.lgth; j++)
+		len = Dcm.lgth;
+	}
+
+	if (num >= Dcm.num && Dcm.lgth<=lgth)
+	{
+		for (int j = 0; j < lgth; j++)
 		{
-			if (j < Result.lgth - 1) 
+			if (num[j] >= Dcm.num[j])
+				Resul.num[j] = num[j] - Dcm.num[j];
+			else if (num[j] < Dcm.num[j] && num[j + 1] != 0)//   
 			{
-				Result.num[j + 1] = Result.num[j + 1] - 1;
-				Result.num[j] = Result.num[j] + 10;
+				tmp = 1;
+				Resul.num[j] = (num[j] + 10 - Dcm.num[j]) % 10;
+				num[j + 1] = num[j + 1] - tmp;
+
 			}
-			Result.num[j] = Result.num[j] - Dcm.num[j];
-			if ((Result.num[j] / 10) > 0) 
-			{
-				Result.num[j + 1] = Result.num[j] + 1;
-				Result.num[j] = Result.num[j]% 10;
-			}
-		}
-		if (Result.num[lgth - 1] == 0) 
-		{
-			Result.lgth = lgth - 1;
+
 		}
 	}
-	return Result;
+	else if (num < Dcm.num)
+	{
+		/*	len = Dcm.lgth;
+			for (int j = 0; j < len; j++)
+			Resul.num[j] = (~(num[j] - Dcm.num[j]))|128;*/
+
+		for (int j = 0; j < Dcm.lgth; j++)
+		{
+			if (j < Dcm.lgth)
+			{
+				Resul.num[j] = Resul.num[j] + 10;
+				Resul.num[j + 1] = Resul.num[j + 1] - 1;
+
+			}
+			Resul.num[j] = Resul.num[j] - Dcm.num[j];
+			
+				
+		}
+	}
+	return  Resul;
 }
-
-
 // Constructor ----------------------
 Decimal::Decimal(void)
 {
-	lgth = NULL;
+	lgth = 0;
+	num = NULL;
 }
 Decimal::Decimal(int razmer)
 {
 	lgth = razmer;
 	num = new unsigned char[lgth];
 }
-
+ 
 // Destructor------------------------------------
 Decimal::~Decimal(void)
 {
-	
+	lgth = 0;
 	delete[] num;
-	num = NULL;
+	
 }
