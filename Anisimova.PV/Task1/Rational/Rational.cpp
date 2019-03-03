@@ -7,13 +7,21 @@
 using namespace std;
 
 //Konstryktor
-Rational::Rational()  {	n = 0; 	m = 1; }
-Rational::Rational(int _n, int _m)   {	n = _n; m = _m; }
+Rational::Rational() { n = 0; 	m = 1; }
+Rational::Rational(int _n, int _m) { n = _n; m = _m; }
 //Destryktor
-Rational::~Rational() {}
+Rational::~Rational() { n = 0; 	m = 1; }
 
+//Prisvaivanie 
+Rational Rational::operator=(const Rational& a)
+{
+	n = a.n;
+	m = a.m;
+	return *this;
+}
 // Operatsii
-Rational Rational::operator + (Rational a)
+
+Rational Rational::operator + (const Rational& a)
 {
 	Rational res;
 	if (m == a.m)
@@ -29,7 +37,7 @@ Rational Rational::operator + (Rational a)
 		return res;
 	}
 }
-Rational Rational::operator - (Rational a)
+Rational Rational::operator - (const Rational& a)
 {
 	Rational res;
 	if (m == a.m)
@@ -45,7 +53,7 @@ Rational Rational::operator - (Rational a)
 		return res;
 	}
 }
-Rational Rational::operator * (Rational a)
+Rational Rational::operator * (const Rational& a)
 {
 	Rational res;
 	res.n = n * a.n;
@@ -53,7 +61,7 @@ Rational Rational::operator * (Rational a)
 
 	return res;
 }
-Rational Rational::operator / (Rational a)
+Rational Rational::operator / (const Rational& a)
 {
 	Rational res;
 	res.n = n * a.m;
@@ -61,8 +69,9 @@ Rational Rational::operator / (Rational a)
 
 	return res;
 }
+
 // Sravnenye
-bool Rational::operator ==(Rational a)
+bool Rational::operator ==(const Rational& a)
 {
 	if (n * a.m != m * a.n)
 		return false;

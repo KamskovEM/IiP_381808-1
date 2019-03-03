@@ -9,7 +9,7 @@ private:
 	int n;      // chislitel'
 	int m;    // znamenatel'
 
-public:	
+public:
 
 	// Konstryktor--------------------------
 	Rational();
@@ -18,15 +18,16 @@ public:
 	~Rational();
 
 	// Metody -----------------------------
-	Rational operator + (Rational); // + rational chisel
-	Rational operator - (Rational); // - rational chisel
-	Rational operator * (Rational);	// * rational chisel
-	Rational operator / (Rational);	// / rational chisel 
+	Rational operator = (const Rational&);     //prisvaivanie
+	Rational operator + (const Rational&);     // + rational chisel
+	Rational operator - (const Rational&);     // - rational chisel
+	Rational operator * (const Rational&);	   // * rational chisel
+	Rational operator / (const Rational&);	   // / rational chisel 
 
 	// Sravnenye fractions
-	bool operator == (Rational);
+	bool operator == (const Rational&);
 
-//Function vvoda/vyvoda fraction
+	//Function vvoda/vyvoda fraction
 	friend ostream & operator << (ostream & stream, const Rational &c);
 	friend istream & operator >> (istream & stream, Rational &c);
 };

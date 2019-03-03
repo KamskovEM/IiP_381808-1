@@ -48,7 +48,7 @@ int main()
 		cout << "Droby ne ravny" << endl;
 	}
 	//arifmetich operatsii
-	Rational sum, razn, pr, chast;
+	Rational sum, razn, pr, chast,r5;
 	sum = r1 + r2;
 	cout << "r1+r2= " << sum << endl;
 	razn = r1 - r2;
@@ -57,6 +57,8 @@ int main()
 	cout << "r1*r2= " << pr << endl;
 	chast = r1 / r2;
 	cout << "r1/r2= " << chast << endl;
-	   
+	r5 = r1;
+	//prisvaivanie 
+	cout << "prisvaivanie r1  k r5=  " << r5 << endl;	   
 	return 0;
 }
