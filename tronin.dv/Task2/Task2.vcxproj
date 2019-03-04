@@ -146,6 +146,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Octal.cpp" />
+    <ClCompile Include="OctalTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Octal.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
