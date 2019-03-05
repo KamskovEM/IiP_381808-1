@@ -5,7 +5,8 @@
 
 Rational::Rational()
 {
-	m = 1; n = 1;
+	this->m = 1;
+	this->n = 1;
 }
 
 Rational::Rational(int m)
@@ -171,7 +172,7 @@ istream &operator>>(istream &stream_in, Rational &rvalue)
 	if (cin.fail()) { cout << "Введено неверное значение"; abort(); }
 	stream_in>>s; 
 	if (s!='/')	{ cout << "Введено неверное значение"; abort(); }
-	stream_in >> rvalue.n; cout << endl; 
+	stream_in >> rvalue.n; cout; 
 	if (cin.fail()) { cout << "Введено неверное значение"; abort(); }
 	rvalue.Canc();
 	return stream_in; }
