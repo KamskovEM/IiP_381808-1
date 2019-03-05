@@ -11,7 +11,7 @@ public:
 	//Конструкторы-------------------------
 	Rational();//стандартный
 	Rational(int m);//преобразователь типа
-	Rational(Rational&c);//копирования
+	Rational(const Rational&c);//копирования
 	Rational(int m, int n);//инициализаци
 	//Деструктор-------------------------
 	~Rational();
@@ -28,6 +28,8 @@ public:
 	Rational operator= (int b);//присвоение целого
 	bool operator== (const Rational & b);//равенство дробей
 	bool operator== (int b);//равенство с целым
+	bool operator!= (const Rational & b);//неравенство дробей
+	bool operator!= (int b);//неравенство с целым
 	bool operator< (const Rational & b);//сравнение дробей, а<b
 	bool operator< (int b);//сравнение дробей, а<b
 	bool operator> (const Rational & b);//сравнение дробей, а>b
@@ -46,6 +48,5 @@ public:
 	int GetN() { return n; }//вывод знаменателя
 private:
 	void Canc();//сокращение дроби
-	void Canc(int d);//деленить на d пока делится
 };
 

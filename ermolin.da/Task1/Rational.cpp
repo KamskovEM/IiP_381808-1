@@ -3,7 +3,6 @@
 #include <locale.h>
 #include "Rational.h"
 
-
 Rational::Rational()
 {
 	m = 1; n = 1;
@@ -14,9 +13,9 @@ Rational::Rational(int m)
 	this->m = m; n = 1;
 }
 
-Rational::Rational(Rational & c)
+Rational::Rational(const Rational & c)
 {
-	c.m = m; c.n = n;
+	m = c.m; n = c.n;
 }
 
 Rational::Rational(int m, int n)
@@ -75,12 +74,16 @@ Rational Rational::operator/(int b)
 
 Rational Rational::operator=(const Rational & b)
 {
-	return Rational(m=b.m,n=b.n);
+	m = b.m;
+	n = b.n;
+	return *this;
 }
 
 Rational Rational::operator=(int b)
 {
-	return Rational(m=b,1);
+	m = b;
+	n = 1;
+	return *this;
 }
 
 bool Rational::operator==(const Rational & b)
@@ -91,7 +94,19 @@ bool Rational::operator==(const Rational & b)
 
 bool Rational::operator==(int b)
 {
-	if (m == b) { return true; }
+	if (m == b && n == 1) { return true; }
+	return false;
+}
+
+bool Rational::operator!=(const Rational & b)
+{
+	if (m != b.m || n != b.n) { return true; }
+	return false;
+}
+
+bool Rational::operator!=(int b)
+{
+	if (m != b || n == 1) { return true; }
 	return false;
 }
 
@@ -149,33 +164,27 @@ ostream & operator<<(ostream & stream, const Rational & b)
 	return stream;
 }
 
-istream & operator>>(istream & stream, Rational & b)
+istream &operator>>(istream &stream_in, Rational &rvalue) 
 {
-	cout << "Числитель: ";
-	stream >> b.m;
-	cout << "Знаменатель: ";
-	stream >>b.n;
-	b.Canc();
-	return stream;
-}
+	char s;
+	stream_in >> rvalue.m; 
+	if (cin.fail()) { cout << "Введено неверное значение"; abort(); }
+	stream_in>>s; 
+	if (s!='/')	{ cout << "Введено неверное значение"; abort(); }
+	stream_in >> rvalue.n; cout << endl; 
+	if (cin.fail()) { cout << "Введено неверное значение"; abort(); }
+	rvalue.Canc();
+	return stream_in; }
 
 
 void Rational::Canc()
 {
-	if (n == 0) {
-	cout << "Ошибка, знаменатель равен 0\n";
-	abort(); 
-	}
+	if (n == 0) { cout << "Знаменатель равен 0"; abort(); }
 	if (m == 0) { n = 1; }
-	for (int i = 2; i <= m&&i <= n; i++) {
-		Canc(i);
-	}
-}
-
-void Rational::Canc(int d)
-{
-	while (!(abs(m) % d) && !(abs(n) % d) && m >= d && n >= d)
-	{
-		m = m / d; n = n / d;
+	for (int i = abs(m); i > 0; i--) {
+		if (abs(m) % i == 0 && n % i == 0) {
+			m = m / i; n = n / i;
+			break;
+		}
 	}
 }
