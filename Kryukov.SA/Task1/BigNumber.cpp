@@ -211,10 +211,10 @@ if (Dcm.lgth > lgth)
 	num = new unsigned char[lgth];
 }
 int j = 0;
-while (Dcm.num[j])//else error
+for (j = 0; j < Dcm.num[j]; j++)
 {
 	num[j] = Dcm.num[j];
-	j++;
+	
 }
 return *this;
 }
