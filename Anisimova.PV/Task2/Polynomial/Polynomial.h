@@ -7,26 +7,26 @@ using namespace std;
 class Polynomial
 {
 public:
-	int n;            //степень полинома
-	int *coefficient; //указатель на массив коэффициентов мономов полинома 
+	int n;            //Stepen' polinoma
+	int *coefficient; //ykazatel' na massiv koefficientif
 
-	// Конструкторы--------------------------
-	Polynomial();                   //По умолчанию
-	Polynomial(int);                //Инициаализатор
-	Polynomial(const Polynomial &); //Копирования
-	//Деструктор---------------------------
+	// Konstryktory--------------------------
+	Polynomial();                   
+	Polynomial(int);                //initsializator
+	Polynomial(const Polynomial &); //Copy
+	//Destryktor---------------------------
 	~Polynomial();
 
 	// Metody -----------------------------
-	int Setn();                              //Задать/узнать степень полинома
-	int SetCoeff(int);                       //Узнать значение коэффициента по его номеру
-	int Ans(int x);                          //Значение полинома в заданной точке х
-	Polynomial Deriv();                      //производная полинома
-	Polynomial operator=(const Polynomial&); //оператор присваивания
+	int Setn();                              //Zadat'/yznat' stepen' polinoma
+	int SetCoeff(int);                       //Yznat' koefficient po znacheniy
+	int Ans(int x);                          //polinom pri x
+	Polynomial Deriv();                      //proizvodnaya
+	Polynomial operator=(const Polynomial&); //operator prisvaivaniya
 	
-	//Функции ввода/вывода
+	//Function vvoda/vyvoda
 	friend ostream & operator << (ostream & stream, const Polynomial &a);
 	friend istream & operator >> (istream & stream, Polynomial &a);
 };
-ostream& operator<<(ostream & stream, const Polynomial &a);//Перегрузка вывода
-istream& operator >> (istream & stream, Polynomial &a);    //Перегрузка ввода
+ostream& operator<<(ostream & stream, const Polynomial &a);//Peregryzka vyvoda
+istream& operator >> (istream & stream, Polynomial &a);    //Peregryzka vvoda

@@ -6,7 +6,7 @@
 #include "Polynomial.h"
 using namespace std;
 
-//Конструктор
+//Konstryktor
 Polynomial::Polynomial() { n = 0; coefficient = 0; }
 Polynomial::Polynomial(int _n)
 {
@@ -27,16 +27,16 @@ Polynomial::Polynomial(const Polynomial& a)
 		coefficient[i] = a.coefficient[i];
 	}
 }
-//Деструктор
+//Destryktor
 Polynomial::~Polynomial() {	n = 0;	delete [] coefficient; }
 
-//Степень полинома
+//Stepen' polinoma
 int Polynomial::Setn()
 { 
 	return n;
 }
 
-//Коэффициент по индексу
+//Koifficient po indeksy
 int Polynomial::SetCoeff(int i)
 {
 	if (i <= n)
@@ -49,7 +49,7 @@ int Polynomial::SetCoeff(int i)
 	}
 }
 
-//Полином при заданном х
+//Polinom pri x
 int Polynomial::Ans(int x)
 {
 	int Ans = 0;
@@ -60,7 +60,7 @@ int Polynomial::Ans(int x)
 	return Ans;
 }
 
-//Производная
+//Proizvodnaya
 Polynomial Polynomial::Deriv()
 {
 	Polynomial p(n - 1);
@@ -71,7 +71,7 @@ Polynomial Polynomial::Deriv()
 	return p;
 }
 
-//Оператор присваивания 
+//Operator prisvaivaniya
 Polynomial Polynomial::operator = (const Polynomial &a)
 {
 	if (this != &a)
@@ -86,11 +86,11 @@ Polynomial Polynomial::operator = (const Polynomial &a)
 	return *this;
 }
 
-//Перегруженный оператор вывода 
+//Vyvod
 ostream& operator<<(ostream & stream, const Polynomial & a)
 {
 	int  n = 0;
-	for (int i = 0; i <= a.n; i++) // цикл проверки, если коэффициент 0
+	for (int i = 0; i <= a.n; i++) 
 	{
 		if (a.coefficient[i] != 0)
 			n++;
@@ -125,7 +125,7 @@ ostream& operator<<(ostream & stream, const Polynomial & a)
 	return stream;
 }
 
-// перегруженный оператор ввода
+// Vvod
 istream& operator>>(istream & stream, Polynomial & a)
 {
 	

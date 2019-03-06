@@ -13,34 +13,34 @@ int main()
 	setlocale(LC_ALL, "rus");
 	int n;
 
-	//Степень полинома в диапозоне от [0,12]
+	//Diapozon [0,12]
 	 do
    	{
-	 cout << "Введите степень полинома P в диапозоне [0,12] " << '\n';
+	 cout << "Vvedite stepen' polinoma P v diapozone [0,12] " << '\n';
      cin >> n;
 	 } 
 	 while (n<0 || n>12);
 	
 	
 	 Polynomial P(n);
-	cout << "Введите коэффициенты мономов полинома: " << '\n';
+	cout << "Vvedite koefficienty monomov polinoma: " << '\n';
 	cin >> P;
 
-	cout << "Полином P:  " <<  P << '\n';
+	cout << "Polinom P:  " <<  P << '\n';
 
-	cout << "Степень полинома =  "  << P.Setn() << '\n';
+	cout << "Stepn' polinoma =  "  << P.Setn() << '\n';
 
-	cout << "Введите номер элемента, коэффициент которого нужно узнать" << '\n';
+	cout << "Vvedite number element, koefficient kotorogo hotite yznat'" << '\n';
 	int i;
 	cin >> i;
-	cout << "Коэффициент = " << P.SetCoeff(i - 1) << '\n';
+	cout << "Koefficient = " << P.SetCoeff(i - 1) << '\n';
 
-	cout << "Введите значение х = " << '\n';
+	cout << "Vvedite х = " << '\n';
 	int x;
 	cin >> x;
-	cout << "Значение полинома при введённом х = " << P.Ans(x) << '\n';
+	cout << "Polinom pri х = " << P.Ans(x) << '\n';
 
-	cout << "Производная полинома= :" << P.Deriv() << '\n';
+	cout << "Proizvodnaya polinoma= :" << P.Deriv() << '\n';
 
 
 
@@ -53,7 +53,7 @@ int main()
 	//chtenie  faila
 	ifstream is("Polynomial.txt");
 	is >>P;
-	cout << "Данные из файла : " << P <<endl;	
+	cout << "Dannye iz faila : " << P <<endl;	
 	
 	return 0;
 }
