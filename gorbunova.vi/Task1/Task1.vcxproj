@@ -18,6 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CTime.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CTime.cpp" />
+    <ClCompile Include="CTimeTest.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{70037372-60DC-4ECF-8244-B65F2FA49A14}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -145,13 +152,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Money.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Money.cpp" />
-    <ClCompile Include="MoneyTest.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
