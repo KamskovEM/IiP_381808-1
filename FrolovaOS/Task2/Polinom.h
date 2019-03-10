@@ -4,6 +4,19 @@
 
 using namespace std;
 
+enum ExType{ NotCorrectValue };
+struct Exception
+{
+	ExType out_of_range;
+	int ind;
+	Exception(ExType _out_of_range, int _ind) 
+	{
+		out_of_range = _out_of_range;
+		ind = _ind;
+	}
+
+};
+
 class Polinom
 {
 public:
@@ -20,7 +33,8 @@ private:
 	double *Coef; //pointer to the array of coefficients of the polynomial koef 
 public:
 	int Getn(); //polynomial function
-	double GetCoef(int);//coefficient function at i-th degree
+	//double GetCoef(int);//coefficient function at i-th degree
+	double&operator [](int ind);
 	Polinom derivative();//derivative
 	Polinom operator=(const Polinom &);//overloaded = operator
 	double answer(double x);//counting function for a given value

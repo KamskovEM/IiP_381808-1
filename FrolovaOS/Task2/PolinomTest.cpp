@@ -14,10 +14,21 @@ int main()
 	cin >> A;
 	cout << "Polynomial A: " << A << '\n';
 	cout << "Derivative  A: " << A.derivative() << '\n';
-	cout << "Enter the index of the element, whose coefficient you want to know" << '\n';
-	int ind;
-	cin >> ind;
-	cout << "Coefficient is " << A.GetCoef(ind - 1) << '\n';
+	int ind1;
+met:
+	try {
+		cout << "Enter the index of the element, whose coefficient you want to know" << '\n';
+		
+		cin >> ind1;
+		A[ind1];
+	}
+	catch (Exception& except) {
+		cout << "Element number " << except.ind
+			<< " is not exist" << endl;
+			goto met;
+	}
+		
+	cout << "Coefficient is " << A[ind1-1] << '\n';
 	cout << "The degree of the polynomial is equal to " << A.Getn() << '\n';
 	cout << "Enter the value x " << '\n';
 	double x;

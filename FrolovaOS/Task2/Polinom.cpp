@@ -42,12 +42,14 @@ int Polinom::Getn()
 	return n;
 }
 
-double Polinom::GetCoef(int i)
+
+double& Polinom::operator [] (int ind)
 {
-	if (i <= n)
-		return Coef[i];
-	else
-		return 0.0;
+	if ((ind >= 0) && (ind <= n + 1))
+	{
+		return Coef[ind];
+	}
+	else throw Exception(NotCorrectValue, ind);
 }
 
 Polinom Polinom::derivative()
