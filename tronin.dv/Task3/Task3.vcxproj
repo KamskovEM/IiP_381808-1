@@ -147,10 +147,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Dictionary.h" />
+    <ClInclude Include="DictionaryTest.h" />
     <ClInclude Include="WordCombination.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dictionary.cpp" />
+    <ClCompile Include="DictionaryTest.cpp" />
     <ClCompile Include="WordCombination.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
