@@ -1,8 +1,8 @@
-9
+7
 Cat Кошка
 Dog Собака
 Plant Растение
-Button Пуговица
+Button Пуговицы
 Mouse Мышь
 Window Окно
 Phone Телефон
