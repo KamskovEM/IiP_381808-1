@@ -4,12 +4,12 @@
 
 using namespace std;
 
-enum ExType{ NotCorrectValue };
+enum ExType { NotCorrectValue };
 struct Exception
 {
 	ExType out_of_range;
 	int ind;
-	Exception(ExType _out_of_range, int _ind) 
+	Exception(ExType _out_of_range, int _ind)
 	{
 		out_of_range = _out_of_range;
 		ind = _ind;
@@ -35,12 +35,12 @@ public:
 	int Getn(); //polynomial function
 	//double GetCoef(int);//coefficient function at i-th degree
 	double&operator [](int ind);
+	void OutputPolinom();
 	Polinom derivative();//derivative
-	Polinom operator=(const Polinom &);//overloaded = operator
+	Polinom& operator=(const Polinom &);//overloaded = operator
 	double answer(double x);//counting function for a given value
 	friend istream &operator >> (istream &s, Polinom &c);//overloaded input operator
 	friend ostream &operator<< (ostream &s, const Polinom &c); // overloaded output operator
 };
 ostream& operator<<(ostream & stream, const Polinom &a);
 istream& operator >> (istream & stream, Polinom &a);
-
