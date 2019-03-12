@@ -13,27 +13,24 @@ int main()
 	setlocale(LC_ALL, "rus");
 	int n;
 
-	//Diapozon [0,12]
-	 do
-   	{
-	 cout << "Vvedite stepen' polinoma P v diapozone [0,12] " << '\n';
-     cin >> n;
-	 } 
-	 while (n<0 || n>12);
-	
-	
-	 Polynomial P(n);
+
+	cout << "Vvedite stepen' polinoma P v diapozone  " << '\n';
+	cin >> n;
+
+	Polynomial P(n);
+
+
 	cout << "Vvedite koefficienty monomov polinoma: " << '\n';
-	cin >> P;
+	for (int i = 0; i <= n; i++)
+	{
+		cin >> P[i];
 
-	cout << "Polinom P:  " <<  P << '\n';
+	}
 
-	cout << "Stepn' polinoma =  "  << P.Setn() << '\n';
+	cout << "Polinom P:  " << P << '\n';
 
-	cout << "Vvedite number element, koefficient kotorogo hotite yznat'" << '\n';
-	int i;
-	cin >> i;
-	cout << "Koefficient = " << P.SetCoeff(i - 1) << '\n';
+	cout << "Stepn' polinoma =  " << P.Setn() << '\n';
+
 
 	cout << "Vvedite õ = " << '\n';
 	int x;
@@ -43,7 +40,20 @@ int main()
 	cout << "Proizvodnaya polinoma= :" << P.Deriv() << '\n';
 
 
+	int ind;
+met:
+	try {
+		cout << "Vvedite number element, koefficient kotorogo hotite yznat'" << '\n';
 
+		cin >> ind;
+		P[ind - 1];
+	}
+	catch (Exception& except) {
+		cout << "Element number " << except.ind
+			<< " is not exist" << endl;
+		goto met;
+	}
+	cout << P[ind - 1] << '\n';
 
 	//zapis' v fail
 	ofstream os("Polynomial.txt");
@@ -52,8 +62,8 @@ int main()
 
 	//chtenie  faila
 	ifstream is("Polynomial.txt");
-	is >>P;
-	cout << "Dannye iz faila : " << P <<endl;	
-	
+	is >> P;
+	cout << "Dannye iz faila : " << P << endl;
+
 	return 0;
 }

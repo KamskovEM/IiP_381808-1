@@ -7,14 +7,14 @@
 using namespace std;
 
 //Konstryktor
-Polynomial::Polynomial() { n = 0; coefficient = 0; }
+Polynomial::Polynomial() { n = 0; coefficient = NULL; }
 Polynomial::Polynomial(int _n)
 {
 	n = _n;
 	coefficient = new int[n + 1];
 	for (int i = 0; i <= n; i++)
 	{
-		coefficient[i] = {};
+		coefficient[i] = 0;
 	}
 }
 Polynomial::Polynomial(const Polynomial& a)
@@ -28,11 +28,11 @@ Polynomial::Polynomial(const Polynomial& a)
 	}
 }
 //Destryktor
-Polynomial::~Polynomial() {	n = 0;	delete [] coefficient; }
+Polynomial::~Polynomial() { n = 0;	delete[] coefficient; }
 
 //Stepen' polinoma
 int Polynomial::Setn()
-{ 
+{
 	return n;
 }
 
@@ -53,7 +53,7 @@ int Polynomial::SetCoeff(int i)
 int Polynomial::Ans(int x)
 {
 	int Ans = 0;
-	for (int i = 0; i <= n ; i++)
+	for (int i = 0; i <= n; i++)
 	{
 		Ans = Ans + (coefficient[i] * pow(x, i));
 	}
@@ -64,19 +64,32 @@ int Polynomial::Ans(int x)
 Polynomial Polynomial::Deriv()
 {
 	Polynomial p(n - 1);
-	for (int i = 0; i < n ; i++)
+	for (int i = 0; i < n; i++)
 	{
 		p.coefficient[i] = (i + 1)*coefficient[i + 1];
 	}
 	return p;
 }
+//Operatsia index
+int& Polynomial::operator[](int index)
+{
+	if (index < 0 || index > n + 1)
+	{
+		throw Exception(NotCorrectValue, index);
+	}
+	else
+		return  coefficient[index];
+
+}
 
 //Operator prisvaivaniya
-Polynomial Polynomial::operator = (const Polynomial &a)
+Polynomial& Polynomial::operator = (const Polynomial &a)
 {
 	if (this != &a)
 	{
 		n = a.n;
+		delete[] coefficient;
+
 		coefficient = new int[n + 1];
 		for (int i = 0; i <= n; i++)
 		{
@@ -86,49 +99,28 @@ Polynomial Polynomial::operator = (const Polynomial &a)
 	return *this;
 }
 
-//Vyvod
-ostream& operator<<(ostream & stream, const Polynomial & a)
+
+ostream &operator<<(ostream &stream, const Polynomial &a)
 {
 	int  n = 0;
-	for (int i = 0; i <= a.n; i++) 
+	for (int i = 0; i <= a.n; i++)
 	{
 		if (a.coefficient[i] != 0)
 			n++;
 	}
 	if (n != 0)
 	{
-		if (a.coefficient[0] != 0) 
+
+		for (int i = 0; i <= a.n; i++)
 		{
-			stream << a.coefficient[0];
+			stream << a.coefficient[i] << " ";
+
 		}
-		for (int i = 1; i <= a.n; i++)
-		{
-			if (a.coefficient[i] < 0)
-			{
-					stream << a.coefficient[i] << "*x^" << i;
-			}
-			else
-			{
-				if (a.coefficient[i] > 0)
-				{
-					stream << "+" << a.coefficient[i] << "*x^" << i;
-				}
-				else stream << "+" << "0*x^" << i;
-			}
-		}
-		stream << '\n';
-	}
-	else
-	{
-		stream << 0;
 	}
 	return stream;
 }
-
-// Vvod
-istream& operator>>(istream & stream, Polynomial & a)
+istream &operator>>(istream &stream, Polynomial &a)// перегруженный оператор ввода 
 {
-	
 	for (int i = 0; i <= a.n; i++)
 	{
 		stream >> a.coefficient[i];
