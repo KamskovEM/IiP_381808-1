@@ -12,8 +12,9 @@ ostream& operator<<(ostream& Ostream, const Decimal& Dcm)
 {
 	for (int j = Dcm.lgth - 1; j >= 0; j--) 
 	{
-		Ostream << (int)Dcm.num[j]; //Ostream << endl;
+		Ostream << (int)Dcm.num[j]; //
 	}
+	Ostream << endl;
 	return Ostream;
 }
 istream& operator>>(istream& Istream, Decimal& Dcm)
@@ -230,40 +231,171 @@ Decimal Decimal::operator+(const Decimal& Dcm)
 	else if (lgth < Dcm.lgth)
 	{
 		len = Dcm.lgth;
+		int k = len;
 	}
 	else
 	{
-		if (num[lgth - 1] + Dcm.num[Dcm.lgth - 1] > 9 )//|| lgth < Dcm.lgth
+		if (num[lgth - 1] + Dcm.num[Dcm.lgth - 1] > 9)
 		{
 			len = lgth + 1;
 		}
 		else
 		{
-			len = lgth;
+			
+				len = lgth;
 		}
 	}
-	
-	Decimal Result(len);//INICIALIZATOR
+	unsigned char res;
+	Decimal Result(len)//INICIALIZATOR
 	int tmp = 0;
-	for (int j = 0; j < Result.lgth; j++) 
-	{
-		if (j < Dcm.lgth && j<=len )//
-		{
-			Result.num[j] = (num[j] + Dcm.num[j] + tmp) % 10;
-			tmp = (num[j] + Dcm.num[j] + tmp) / 10;
+	if (Dcm.lgth <= Result.lgth)
+				for (int j = 0; j < Result.lgth; j++)
+				{
+					if (j < Result.lgth)
+					{
+						Result.num[j] = (num[j] + Dcm.num[j] + tmp) % 10;
+						tmp = (num[j] + Dcm.num[j] + tmp) / 10;
+					}
+					else
+					{
+						Result.num[j] = (num[j] + tmp) % 10;
+						tmp = (num[j] + tmp) / 10;
+					}
+				}
+			else if (Dcm.lgth > Result.lgth)
+				for (int j = 0; j < Dcm.lgth; j++)
+				{
+					if (j < Dcm.lgth)
+					{
+						Result.num[j] = (num[j] + Dcm.num[j] + tmp) % 10;
+						tmp = (num[j] + Dcm.num[j] + tmp) / 10;
+					}
+					else
+					{
+						Result.num[j] = (num[j] + tmp) % 10;
+						tmp = (num[j] + tmp) / 10;
+					}
+				}
+			return Result;
 		}
-		else 
-		{
-			Result.num[j] = (num[j] + tmp) % 10;
-			tmp = (num[j] + tmp) / 10;
-		}
-	}
-	return Result;
-}
+
+//Decimal Decimal::operator+(const Decimal& Dcm)
+//{
+//	int len = 0;
+//
+//	if (lgth >= Dcm.lgth)
+//	{
+//		len = lgth;
+//	}
+//	else if (lgth < Dcm.lgth)
+//	{
+//		len = Dcm.lgth;
+//		int k = len;
+//	}
+//	else
+//	{
+//		if (num[lgth - 1] + Dcm.num[Dcm.lgth - 1] > 9)
+//		{
+//			len = lgth + 1;
+//		}
+//		else
+//		{
+//
+//			len = lgth;
+//		}
+//	}
+//	unsigned char* res = num;
+//	Decimal Result(len, res);//INICIALIZATOR
+//	int tmp = 0;
+//	if (Dcm.lgth <= Result.lgth)
+//		for (int j = 0; j < Result.lgth; j++)
+//		{
+//			if (j < Result.lgth)
+//			{
+//				Result.num[j] = (num[j] + Dcm.num[j] + tmp) % 10;
+//				tmp = (num[j] + Dcm.num[j] + tmp) / 10;
+//			}
+//			else
+//			{
+//				Result.num[j] = (num[j] + tmp) % 10;
+//				tmp = (num[j] + tmp) / 10;
+//			}
+//		}
+//	else if (Dcm.lgth > Result.lgth)
+//		for (int j = 0; j < Dcm.lgth; j++)
+//		{
+//			if (j < Dcm.lgth)
+//			{
+//				Result.num[j] = (num[j] + Dcm.num[j] + tmp) % 10;
+//				tmp = (num[j] + Dcm.num[j] + tmp) / 10;
+//			}
+//			else
+//			{
+//				Result.num[j] = (num[j] + tmp) % 10;
+//				tmp = (num[j] + tmp) / 10;
+//			}
+//		}
+//	return Result;
+//}
+////////////////////////////////////////////////////////
+//Decimal Decimal::operator-(const Decimal& Dcm)
+//{
+//
+//	int tmp = 0;
+//	int len = 0;
+//
+//	if (lgth >= Dcm.lgth)
+//	{
+//		len = lgth;
+//	}
+//	else if (lgth < Dcm.lgth)
+//	{
+//		len = Dcm.lgth;
+//	}
+//	unsigned char res;
+//	Decimal Resul(len, res);
+//	if (num >= Dcm.num && Dcm.lgth <= lgth)
+//	{
+//		for (int j = 0; j < len; j++)
+//		{
+//			if (num[j] >= Dcm.num[j])
+//				Resul.num[j] = num[j] - Dcm.num[j];
+//			else if (num[j] < Dcm.num[j] && num[j + 1] != 0)//   
+//			{
+//				tmp = 1;
+//				Resul.num[j] = (num[j] + 10 - Dcm.num[j]) % 10;
+//				num[j + 1] = num[j + 1] - tmp;
+//
+//			}
+//
+//		}
+//	}
+//	else if (num < Dcm.num)
+//	{
+//		tmp = 1;
+//		int j = 0;
+//		while (j < len)
+//		{
+//			if (num[j] >= Dcm.num[j])
+//				Resul.num[j] = num[j] - Dcm.num[j];
+//
+//			else
+//			{
+//				Resul.num[j] = num[j] + 10 - Dcm.num[j];
+//				num[j + 1] -= tmp;
+//				Resul.num[j + 1] = Resul.num[j + 1] - 1;
+//				Resul.num[j] = Resul.num[j] - Dcm.num[j];
+//			}
+//			j++;
+//
+//		}
+//	}
+//	return  Resul;
+//}
 //////////////////////////////////////////////////////////
 Decimal Decimal::operator-(const Decimal& Dcm)
 {
-	Decimal Resul(lgth);
+	
 	int tmp = 0;
 	int len = 0;
 
@@ -275,10 +407,11 @@ Decimal Decimal::operator-(const Decimal& Dcm)
 	{
 		len = Dcm.lgth;
 	}
-
+	unsigned char res;
+	Decimal Resul(len, res );
 	if (num >= Dcm.num && Dcm.lgth<=lgth)
 	{
-		for (int j = 0; j < lgth; j++)
+		for (int j = 0; j < len; j++)
 		{
 			if (num[j] >= Dcm.num[j])
 				Resul.num[j] = num[j] - Dcm.num[j];
@@ -293,37 +426,47 @@ Decimal Decimal::operator-(const Decimal& Dcm)
 		}
 	}
 	else if (num < Dcm.num)
-	{
-		/*	len = Dcm.lgth;
-			for (int j = 0; j < len; j++)
-			Resul.num[j] = (~(num[j] - Dcm.num[j]))|128;*/
-
-		for (int j = 0; j < Dcm.lgth; j++)
-		{
-			if (j < Dcm.lgth)
 			{
-				Resul.num[j] = Resul.num[j] + 10;
-				Resul.num[j + 1] = Resul.num[j + 1] - 1;
-
+				tmp = 1;
+				int j = 0;
+				while (j < len)
+				{
+					if (num[j] >= Dcm.num[j])
+						Resul.num[j] = num[j] - Dcm.num[j];
+		
+					else
+					{
+						Resul.num[j] = num[j] + 10 - Dcm.num[j];
+						num[j + 1] -= tmp;
+						Resul.num[j + 1] = Resul.num[j + 1] - 1;
+						Resul.num[j] = Resul.num[j] - Dcm.num[j];
+					}
+					j++;
+		
+				}
 			}
-			Resul.num[j] = Resul.num[j] - Dcm.num[j];
-			
-				
+			return  Resul;
 		}
-	}
-	return  Resul;
-}
 // Constructor ----------------------
 Decimal::Decimal(void)
 {
 	lgth = 0;
 	num = NULL;
 }
-Decimal::Decimal(int razmer)
+Decimal::Decimal(int razmer, unsigned char b)
 {
 	lgth = razmer;
 	num = new unsigned char[lgth];
+	for (int i = 0; i < lgth; i++)
+		num[i] = b;
 }
+
+Decimal::Decimal(const Decimal & mas)//COPY
+{
+	lgth = mas.lgth;
+	num = mas.num;
+}
+
  
 // Destructor------------------------------------
 Decimal::~Decimal(void)

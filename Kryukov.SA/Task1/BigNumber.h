@@ -29,9 +29,11 @@ public:
 
 	// Constructors
 	//INICIALIZATOR AND PRIVIDENIE TIPA
-	Decimal(int razmer);
+	Decimal::Decimal(int razmer, unsigned char b);
 	// PO UMOLCHANIU
 	Decimal(void);
+	//copy
+	Decimal::Decimal(const Decimal & mas);
 	// Destructor
 	~Decimal(void);
 };

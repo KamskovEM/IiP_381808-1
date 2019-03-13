@@ -8,19 +8,23 @@ using namespace std;
 int main() 
 {
 	//vvod-------------------------
-	int one;
+	int one, v;
 	cout << "length first number " << endl;
 	cin >> one;
-	Decimal DFirs(one);//set the sizes
+	//set the sizes
+	
 	cout << "VVOD number " << endl;
-	cin >> DFirs;
-	int two;
+	cin >> v;
+	Decimal DFirs(one, v);
+	
+	int two,R;
 	cout << "length  second number " << endl;
 	cin >> two;
-	Decimal DSec(two);//set the sizes
+	//set the sizes
+	
 	cout << "VVOD number " << endl;
-	cin >> DSec;
-
+	cin >> R;
+Decimal DSec(two, R);
 	//operathion---------------------------
 	//int K;
 	//if (one >= two)//choose the desired size
@@ -28,7 +32,7 @@ int main()
 	//else
 	//	K = two;
 
-    Decimal Dec(one);
+  //  Decimal Dec(one);
 	//Dec = 
 	cout << " sum= " <<  DFirs + DSec<< endl;
 //	Dec =;
