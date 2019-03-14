@@ -7,8 +7,7 @@ using namespace std;
 int main()
 {
 	Ratio d; // basic constructor  test
-	cout << d; // output test
-	Ratio a(4, 5), b(2, 5), e(3, 5);// constructor w_given_parameters test
+	Ratio a(4, 5), b(2 , -3), e(3, 5);// constructor w_given_parameters test
 	cout << a; // output
 	cout << b; //output
 	Ratio c = a - b; // test for the operators "-" and "="
@@ -18,7 +17,7 @@ int main()
 	c = c + b; // test for the operators "+" and "="
 	cout << c; // output
 	c = a * b; // test for the operators "*" and "="
-
+	cout << c; // output
 	// comparison operators
 	if (a < b)
 		cout << "a < b" << "\n";

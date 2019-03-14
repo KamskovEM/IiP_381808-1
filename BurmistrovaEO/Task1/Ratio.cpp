@@ -6,108 +6,100 @@ using namespace std;
 
 Ratio::Ratio() //basic constructor
 {
-	int tmp;
-	cin >> n;
-	cin >> m;
-	tmp = NOD(n, m);
-	if (tmp > 1)
-	{
-		n = n / tmp;
-		m = m / tmp;
-	}
 
 };
-Ratio::Ratio(int v, unsigned int u) // constructor w_given_parameters
+Ratio::Ratio(int v,  int u) // constructor w_given_parameters
 {
 	int tmp;
 	n = v;
 	m = u;
-	tmp = NOD(n, m);
+	tmp = NOD(abs(n), m);
 	if (tmp > 1)
 	{
 		n = n / tmp;
 		m = m / tmp;
+	}	
+	if (m < 0 && n >= 0)
+	{
+		n = n * (-1);
+		m = m * (-1);
 	}
+	
 };
+void Ratio::cut(Ratio& op, int t)
+{
+	op.n = op.n / t;
+	op.m = op.m / t;
 
+	
+}
 //Overloading operators
-Ratio Ratio :: operator=(Ratio op)
+Ratio& Ratio :: operator=(Ratio op)
 {
 	n = op.n;
 	m = op.m;
 	return *this;
 };
-Ratio Ratio :: operator+(Ratio op)
+Ratio Ratio :: operator+(Ratio& op)
 {
 	int k = 0;
-	Ratio tmp(0, 0);
-	tmp.n = n * op.m + op.n*m;
-	tmp.m = m * op.m;
-	k = NOD(tmp.n, tmp.m);
+	Ratio tmp(n * op.m + op.n * m, m * op.m);
+	k = NOD(abs(tmp.n), abs(tmp.m));
 	if (k > 1)
 	{
-		tmp.n = tmp.n / k;
-		tmp.m = tmp.m / k;
+		cut(tmp, k);
 	}
 	return tmp;
 };
-Ratio Ratio :: operator*(Ratio op)
+Ratio Ratio :: operator*(Ratio& op)
 {
 	int k = 0;
-	Ratio tmp(0, 0);
-	tmp.n = n * op.n;
-	tmp.m = m * op.m;
-	k = NOD(tmp.n, tmp.m);
+	Ratio tmp(n * op.n, m * op.m);
+	k = NOD(abs(tmp.n), abs(tmp.m));
 	if (k > 1)
 	{
-		tmp.n = tmp.n / k;
-		tmp.m = tmp.m / k;
+		cut(tmp, k);
 	}
 	return tmp;
 };
-Ratio Ratio :: operator/(Ratio op)
+Ratio Ratio :: operator/(Ratio& op)
 {
 	int k = 0;
-	Ratio tmp(0, 0);
-	tmp.n = n * op.m;
-	tmp.m = m * op.n;
-	k = NOD(tmp.n, tmp.m);
+	Ratio tmp(n * op.m, m * op.n);
+	k = NOD(abs(tmp.n), abs(tmp.m));
 	if (k > 1)
 	{
-		tmp.n = tmp.n / k;
-		tmp.m = tmp.m / k;
+		cut(tmp, k);
+	}	
+
+	return tmp;
+};
+Ratio Ratio :: operator-(Ratio& op)
+{
+	int k = 0;
+	Ratio tmp(n * op.m - op.n*m, m * op.m);
+	k = NOD(abs(tmp.n), abs(tmp.m));
+	if (k > 1)
+	{
+		cut(tmp, k);
 	}
 	return tmp;
 };
-Ratio Ratio :: operator-(Ratio op)
-{
-	int k = 0;
-	Ratio tmp(0, 0);
-	tmp.n = n * op.m - op.n*m;
-	tmp.m = m * op.m;
-	k = NOD(tmp.n, tmp.m);
-	if (k > 1)
-	{
-		tmp.n = tmp.n / k;
-		tmp.m = tmp.m / k;
-	}
-	return tmp;
-};
-bool Ratio :: operator==(Ratio op)
+bool Ratio :: operator==(Ratio& op)
 {
 	if (n == op.n && m == op.m)
 		return true;
 	else
 		return false;
 };
-bool Ratio :: operator!=(Ratio op)
+bool Ratio :: operator!=(Ratio& op)
 {
 	if (n != op.n || m != op.m)
 		return true;
 	else
 		return false;
 };
-bool Ratio :: operator<(Ratio op)
+bool Ratio :: operator<(Ratio& op)
 {
 	n = n * op.m;
 	op.n *= m;
@@ -119,7 +111,7 @@ bool Ratio :: operator<(Ratio op)
 	else
 		return false;
 };
-bool Ratio :: operator>(Ratio op)
+bool Ratio :: operator>(Ratio& op)
 {
 	n = n * op.m;
 	op.n *= m;
@@ -131,7 +123,7 @@ bool Ratio :: operator>(Ratio op)
 	else
 		return false;
 };
-bool Ratio :: operator>=(Ratio op)
+bool Ratio :: operator>=(Ratio& op)
 {
 	n = n * op.m;
 	op.n *= m;
@@ -143,7 +135,7 @@ bool Ratio :: operator>=(Ratio op)
 	else
 		return false;
 };
-bool Ratio :: operator<=(Ratio op)
+bool Ratio :: operator<=(Ratio& op)
 {
 	n = n * op.m;
 	op.n *= m;
