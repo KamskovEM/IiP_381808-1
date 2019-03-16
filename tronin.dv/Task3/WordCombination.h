@@ -9,16 +9,17 @@ private:
 
 public:
 	WordCombination(); //Конструктор по умолчанию
-	WordCombination(std::string, std::string); //Констурктор инициализатор
+	WordCombination(std::string, std::string); //Конструктор инициализатор
 	WordCombination(const WordCombination&);
 	~WordCombination();
 
 	WordCombination& operator=(const WordCombination&);
+	bool operator==(const WordCombination&) const;
 
-	std::string& GetEngWord() { return EngWord; }; //Получение английского слова
-	std::string& GetRusWord() { return RusWord; }; //Получение русского слова
+	const std::string& GetEngWord() const { return EngWord; }; //Получение английского слова
+	const std::string& GetRusWord() const { return RusWord; }; //Получение русского слова
 
-	void SetPair(std::string&, std::string&); //Установление пары 
+	void SetPair(const std::string&, const std::string&); //Установление пары 
 	
 	friend std::istream& operator>>(std::istream& stream, WordCombination& _c);
 	friend std::ostream& operator<<(std::ostream& stream, const WordCombination& _c);

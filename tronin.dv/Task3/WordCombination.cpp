@@ -33,7 +33,13 @@ WordCombination& WordCombination::operator=(const WordCombination& _c)
 	return *this;
 }
 
-void WordCombination::SetPair(std::string& eng, std::string& rus)
+bool WordCombination::operator==(const WordCombination& _c) const
+{
+	if (EngWord == _c.EngWord && RusWord == _c.RusWord) return true;
+	return false;
+}
+
+void WordCombination::SetPair(const std::string& eng, const std::string& rus)
 {
 	EngWord = eng;
 	RusWord = rus;
