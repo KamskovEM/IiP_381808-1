@@ -14,4 +14,39 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Polynomial\pch.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Polynomial\Polynomial.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Polynomial\PolynomialTest.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Polynomial\pch.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
+    <ClInclude Include="Polynomial\Polynomial.h">
+      <Filter>Файлы исходного кода</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Polynomial\Polynomial.txt">
+      <Filter>Файлы исходного кода</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Polynomial\Polynomial.vcxproj">
+      <Filter>Файлы исходного кода</Filter>
+    </None>
+    <None Include="Polynomial\Polynomial.vcxproj.filters">
+      <Filter>Файлы исходного кода</Filter>
+    </None>
+    <None Include="Polynomial\Polynomial.vcxproj.user">
+      <Filter>Файлы исходного кода</Filter>
+    </None>
+  </ItemGroup>
 </Project>

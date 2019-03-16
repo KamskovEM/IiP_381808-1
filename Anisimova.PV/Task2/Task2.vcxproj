@@ -146,6 +146,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Polynomial\pch.cpp" />
+    <ClCompile Include="Polynomial\Polynomial.cpp" />
+    <ClCompile Include="Polynomial\PolynomialTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Polynomial\pch.h" />
+    <ClInclude Include="Polynomial\Polynomial.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Polynomial\Polynomial.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Polynomial\Polynomial.vcxproj" />
+    <None Include="Polynomial\Polynomial.vcxproj.filters" />
+    <None Include="Polynomial\Polynomial.vcxproj.user" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
