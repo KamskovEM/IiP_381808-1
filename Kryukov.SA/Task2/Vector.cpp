@@ -12,22 +12,21 @@ VECTOR::VECTOR()//po umolchaniu
 	Size = 0;
 	num = NULL;
 }
-
 VECTOR::~VECTOR()//Destructor
 {
-	if (num != NULL)
-			{
-				delete[] num;
-				num = NULL;
-				Size = 0;
-			}
-
+	if (num != NULL){
+		delete[] num;
+		num = NULL;
+		Size = 0;
+		}
 }
 //INICIALIZATORs
 VECTOR::VECTOR(int Siz) : Size(Siz)
 {
 	if (Size<maxSIZE)
 	num = new int[Size];
+	else
+		throw VectorExeption();
 }
 VECTOR::VECTOR(int Siz, int m)
 {
@@ -52,16 +51,15 @@ VECTOR& VECTOR:: operator=(const VECTOR &Dr)
 	if (this != &Dr)
 	{
 		if (Size != Dr.Size)
-					{
-						delete[] num;
-						Size = Dr.Size;
-						num = new int [Size];
-					}
-					for (int i = 0; i < Size;i++)
-						num[i] = Dr.num[i];
-				}
-				return *this;
-			
+		{
+			delete[] num;
+			Size = Dr.Size;
+			num = new int [Size];
+		}
+		for (int i = 0; i < Size;i++)
+			num[i] = Dr.num[i];
+	}
+	return *this;
 }
 VECTOR VECTOR::operator+(const VECTOR &Dr) 
 {
@@ -71,7 +69,6 @@ VECTOR VECTOR::operator+(const VECTOR &Dr)
 	for (int i = 0; i <Size ; i++)
 		rez.num[i] = num[i] + Dr.num[i];
 	return rez;
-	
 }
 int  VECTOR::operator*(const VECTOR &Dr)
 {int rez = 0;
@@ -82,7 +79,7 @@ int  VECTOR::operator*(const VECTOR &Dr)
 			rez += num[i] * Dr.num[i];
 	}
 	else
-		throw Range();
+		throw VectorExeption();
 	return rez;
 }
 //показать на консоли
@@ -127,29 +124,23 @@ void VECTOR::Newlong(int _size)
 		Size = _size;
 }
 //узнать размер вектора
-void VECTOR::razmer()//(int _Size)
+int VECTOR::razmer()
 {
-	cout << "размер = " << Size << endl;
+	return Size;
 }
 //задать и вычислить компоненту по номеру 
 int& VECTOR::operator[](int index)
 {
 	if (index < 0 || index > 20 )
-		throw Range();
+		throw VectorExeption();
 		return num[index];
 }
-
-
 //вычислить длинну вектора
-
 double VECTOR::lenght()
 {
-
-
 int sum = 0;	
 for (int i = 0; i < Size; i++)
 		sum += num[i] * num[i];
-
 	return sqrt(sum);
 }
 

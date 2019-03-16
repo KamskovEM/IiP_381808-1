@@ -12,7 +12,6 @@ int main()
 	int Count = 19;
 	try
 	{
-		
 		VECTOR v1(Count, 2);
 		v1.show("v1");
 	int a = 10;
@@ -33,13 +32,12 @@ int main()
 	v4 = v1 + v2;//сумма векторов
 	cout << "сумма : " <<v4 ;
 	v1.Newlong(7);//задаем размер
-	v1.razmer();//узнаем размер
+	int SiZe;
+	SiZe =v1.razmer();//узнаем размер
+	cout << "razmer=" << SiZe<< endl;
 	double len;
 	len = v2.lenght();//вычисляем длину
 	cout <<"длина: " << len;
-
-
-	
 	// Запись в поток
 	cout << "\nos << v1 << v2 << endl;-------- " << endl;
 	v1.show("v1");
@@ -48,7 +46,6 @@ int main()
 	os.open("vector.txt"); // файл для записи
 	os << v1 << v2 << endl;
 	os.close();
-
 	// Чтение из потока
 	cout << "\nis >> v3 >> v4; --------------------------" << endl;
 	ifstream is; // поток для чтения
@@ -57,10 +54,8 @@ int main()
 	v3.show("v3");
 	v4.show("v4");
 	is.close();
-	
-	
 	}
-    catch (VECTOR::Range)
+    catch (VectorExeption)
 	{
 		cout << "Исключение: неверно задан размер" << endl;
 	}
