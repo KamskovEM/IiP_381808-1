@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include <cstring>
+#include <string>
 #include <locale>
 #include <fstream>
 #include "Octal.h"
