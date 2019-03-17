@@ -62,8 +62,11 @@ bool Matrix::DiagonalDom() const
 
 Matrix & Matrix::operator=(const Matrix & matr)
 {
-	Release();
-	Matrix::Matrix(matr);
+	if (this != &matr)
+	{
+		Release();
+		Matrix::Matrix(matr);
+	}
 	return *this;
 }
 
