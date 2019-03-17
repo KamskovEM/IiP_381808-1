@@ -14,9 +14,12 @@ void Matrix::Release()
 {
 	for (int i = 0; i < mSize; i++)
 	{
+		if (mMatrix[i] != nullptr)
 		delete[] mMatrix[i];
 	}
+	if (mMatrix != nullptr)
 	delete[] mMatrix;
+
 }
 
 bool Matrix::SetSize(int size)
@@ -42,7 +45,7 @@ bool Matrix::SetSize(int size)
 	return (mSize == size);  // была создана матрица указанных размеров?
 }
 
-bool Matrix::DiagonalDom()
+bool Matrix::DiagonalDom() const
 {
 	int sum = 0;
 	for (int i = 0; i < mSize; i++)
@@ -55,6 +58,13 @@ bool Matrix::DiagonalDom()
 		if (mMatrix[i][i] < sum) return false;
 	}
 	return true;
+}
+
+Matrix & Matrix::operator=(const Matrix & matr)
+{
+	Release();
+	Matrix::Matrix(matr);
+	return *this;
 }
 
 int & Matrix::operator()(int row, int column)
@@ -113,14 +123,16 @@ Matrix::~Matrix()
 {
 	Release();
 	mSize = 0;
+	mMatrix = nullptr;
 }
 
 std::ostream & operator<<(std::ostream & out, const Matrix & matr)
 {
+	out << matr.GetSize() << std::endl;
 	out << std::left;
-	for (int i = 0; i < matr.mSize; i++)
+	for (int i = 0; i < matr.GetSize(); i++)
 	{
-		for (int j = 0; j < matr.mSize; j++)
+		for (int j = 0; j < matr.GetSize(); j++)
 		{
 			//out << matr.mMatrix[i][j] << " ";
 			out << std::setw(5) << matr.mMatrix[i][j];
@@ -132,6 +144,11 @@ std::ostream & operator<<(std::ostream & out, const Matrix & matr)
 
 std::istream & operator>>(std::istream & in, Matrix & matr)
 {
+	// освобождаем предыдущую матрицу
+	matr.Release();
+	in >> matr.mSize;
+	// заказ памяти под матрицу нового размера
+	matr.InitializeMatrix();
 	for (int i = 0; i < matr.mSize; i++)
 	{
 		for (int j = 0; j < matr.mSize; j++)
