@@ -5,14 +5,14 @@
 #include <clocale>
 #include <fstream>
 #include "Polynomial.h"
-#include <algorithm>
 #define MAX 13;
 using namespace std;
 enum PolynomialExeption { coeffINDOUTOFRANGE }; // тип исключения
 Polynomial::Polynomial()
 {
 	size = 0;
-	coeff = nullptr;
+	int sizemax = MAX;
+	coeff = new double[sizemax];
 
 }
 Polynomial::Polynomial(int _size) {
@@ -25,7 +25,6 @@ Polynomial::Polynomial(int _size) {
 Polynomial::~Polynomial() {
 	size = 0;
 	coeff = NULL;
-	delete[] coeff;
 }
 Polynomial::Polynomial(const Polynomial& _Poly)
 {
@@ -39,7 +38,7 @@ Polynomial::Polynomial(const Polynomial& _Poly)
 Polynomial& Polynomial::operator= (const Polynomial& _Poly)
 {
 	if (this != &_Poly) {
-		if (size != _Poly.size)
+		if (size < _Poly.size)
 		{
 			delete[] coeff;
 			size = _Poly.size;
@@ -52,38 +51,9 @@ Polynomial& Polynomial::operator= (const Polynomial& _Poly)
 	}
 	return *this;
 }
-Polynomial Polynomial::operator+ (const Polynomial& _Poly) const
-{
-	int len = max(size, _Poly.size);
-	int lenmin = min(size, _Poly.size);
-	Polynomial Polysum(len);
-	//Складываем общую часть
-	for (int i = 0; i <= lenmin; i++)
-	{
-		Polysum.coeff[i] = coeff[i] + _Poly.coeff[i];
-	}
-	// Переписываем хвост
-	if (size > _Poly.size)
-	{
-		for (int i = lenmin + 1; i <= len; i++)
-		{
-			Polysum.coeff[i] = coeff[i];
-		}
-	}
-	else
-	{
-		for (int i = lenmin + 1; i <= len; i++)
-		{
-			Polysum.coeff[i] = _Poly.coeff[i];
-		}
-	}
-
-	return Polysum;
-}
 istream& operator>>(istream & stream, Polynomial & _Poly)
 {
-	stream >> _Poly.size;
-	_Poly.coeff = new double[_Poly.size + 1];
+
 	for (int i = 0; i <= _Poly.size; i++)
 	{
 		stream >> _Poly.coeff[i];
@@ -112,6 +82,7 @@ Polynomial Polynomial::Polydifferential() {
 ostream& operator<<(ostream & stream, const Polynomial & _Poly)
 {
 	/*Написано сложновато с ипользованием двух флагов, чтобы полином выводился без лишнего + перед 1 коэффицентом */
+	int  size = 0;
 	bool flag = true;
 	bool firstflag = true;
 	int i = 0;
@@ -169,4 +140,18 @@ const double& Polynomial::operator[](int index) const {
 		throw expt;
 	}
 	return coeff[index];
+}
+//Необязательные методы
+void Polynomial::SetPolycoeffs() {
+	cout << "Ввод коэффицентов монома с помощью метода SetPolycoeffs:  " << endl;
+	for (int i = 0; i <= size; i++)
+		cin >> coeff[i];
+}
+void Polynomial::SetPolydegree(int degree)
+{
+	size = degree;
+	int i;
+	for (i = 0; i <= size; i++)
+		coeff[i] = 0.0;
+
 }
