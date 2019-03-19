@@ -10,6 +10,7 @@ public:
 	~Polynomial(); // Деструктор
 	Polynomial(const Polynomial& _Poly); // Конструктор копирования
 	Polynomial& operator= (const Polynomial& _Poly); // перегрузка присваивания
+	Polynomial operator+ (const Polynomial& _Poly) const; // перегрузка суммирования
 	friend istream& operator>>(istream & stream, Polynomial & _Poly); // перегрузка потока ввода
 	friend ostream& operator<<(ostream & stream, const Polynomial & _Poly);// перегрузка потока вывода
 	double& operator[] (int); // перегрузка индексикации с контролем выхода за предел массива. Узнать коэффицент монома
@@ -17,7 +18,5 @@ public:
 	int GetPolydegree(); // Узнать степениь полинома
 	double Polyfunvalue(double); // Посчитать значение в точке
 	Polynomial Polydifferential(); // Производная  полинома
-	// Необязательные методы, которые, наверное, никогда не пригодятся
-	void SetPolycoeffs(); // Установить коэффиценты через метод, а не перегрузку ввода
-	void SetPolydegree(int); // Установить степень полинома вручную, а не через конструктор
+	void screenoutout(); //Вывод на экран полином в текстовой форме
 };
