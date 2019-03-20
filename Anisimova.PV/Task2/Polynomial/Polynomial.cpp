@@ -28,7 +28,7 @@ Polynomial::Polynomial(const Polynomial& a)
 	}
 }
 //Destryktor
-Polynomial::~Polynomial() { n = 0;	delete[] coefficient; }
+Polynomial::~Polynomial() { n = 0;	 coefficient=NULL; }
 
 //Stepen' polinoma
 int Polynomial::Setn()
@@ -53,7 +53,7 @@ int Polynomial::SetCoeff(int i)
 int Polynomial::Ans(int x)
 {
 	int Ans = 0;
-	for (int i = 0; i <= n; i++)
+	for (int i = 1; i <= n+1; i++)
 	{
 		Ans = Ans + (coefficient[i] * pow(x, i));
 	}
@@ -63,10 +63,10 @@ int Polynomial::Ans(int x)
 //Proizvodnaya
 Polynomial Polynomial::Deriv()
 {
-	Polynomial p(n - 1);
-	for (int i = 0; i < n; i++)
+	Polynomial p(n);
+	for (int i = 1; i <= n; i++)
 	{
-		p.coefficient[i] = (i + 1)*coefficient[i + 1];
+		p.coefficient[i] = i *coefficient[i + 1];
 	}
 	return p;
 }
@@ -87,43 +87,62 @@ Polynomial& Polynomial::operator = (const Polynomial &a)
 {
 	if (this != &a)
 	{
-		n = a.n;
-		delete[] coefficient;
-
-		coefficient = new int[n + 1];
-		for (int i = 0; i <= n; i++)
+		if (n == a.n) 
 		{
-			coefficient[i] = a.coefficient[i];
+			coefficient[0] = n;
+		   for (int i = 1; i <= n+1; i++)
+		   {
+			   coefficient[i] = a.coefficient[i];
+		   }
+		
 		}
+		else 
+		{
+		  n = a.n;
+		  delete[] coefficient;
+		  coefficient = new int[n];		
+		}		
 	}
 	return *this;
 }
 
-
+//vyvod
 ostream &operator<<(ostream &stream, const Polynomial &a)
 {
-	int  n = 0;
-	for (int i = 0; i <= a.n; i++)
-	{
-		if (a.coefficient[i] != 0)
-			n++;
-	}
-	if (n != 0)
-	{
-
-		for (int i = 0; i <= a.n; i++)
+	
+	/*a.coefficient[0] = a.n;
+	stream << a.coefficient[0] << " ";
+		for (int i = 1; i <= a.n + 1; i++)
 		{
 			stream << a.coefficient[i] << " ";
-
 		}
+	
+	return stream;*/
+	int  n = 0;
+		for (int i = 0; i <= a.n; i++)
+		{
+			if (a.coefficient[i] != 0)
+				n++;
+		}
+	if (n != 0)
+	{
+		a.coefficient[0] = a.n;
+		stream << a.coefficient[0] << " ";
+			for (int i = 1; i <= a.n+1; i++)
+			{				
+				stream << a.coefficient[i] << " ";
+			}
+		
 	}
 	return stream;
 }
+
 istream &operator>>(istream &stream, Polynomial &a)// перегруженный оператор ввода 
 {
-	for (int i = 0; i <= a.n; i++)
+	for (int i = 0; i <= a.n+1; i++)
 	{
 		stream >> a.coefficient[i];
 	}
 	return stream;
+	
 }
