@@ -18,6 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MyOctal.cpp" />
+    <ClCompile Include="MyOctalTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MyOctal.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{494F14F7-44EC-43D2-99D0-A5ABD8919183}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
