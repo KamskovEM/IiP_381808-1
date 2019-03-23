@@ -5,12 +5,12 @@ using namespace std;
 
 int NOD(int v, unsigned int u)
 {
-	while (abs(v) != u)
+	while (v != u)
 	{
-		if (abs(v) > u)
-			v = abs(v) - u;
-		if (u > abs(v))
-			u = u - abs(v);
+		if (v > u)
+			v = v - u;
+		if (u > v)
+			u = u - v;
 	}
 	return u;
 }
