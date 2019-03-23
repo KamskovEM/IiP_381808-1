@@ -100,22 +100,6 @@ ostream& operator<<(ostream& stream, const VECTOR &Dr)
 	stream << endl;
 	return stream;
 }
-// ввод из потока
-istream& operator>>(istream& stream, VECTOR &Dr)
-{
-	int str;
-	stream >> str;
-	if (Dr.Size != str)
-	{
-		if (Dr.num != NULL)
-			delete[] Dr.num;
-		Dr.Size = str;
-		Dr.num = new int [str];
-	}
-	for (int i = 0; i <Dr.Size; i++)
-		stream >> Dr.num[i];
-	return stream;
-}
 
 //задать размер вектора 
 void VECTOR::Newlong(int _size)
