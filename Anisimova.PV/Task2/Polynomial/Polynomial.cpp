@@ -109,15 +109,6 @@ Polynomial& Polynomial::operator = (const Polynomial &a)
 //vyvod
 ostream &operator<<(ostream &stream, const Polynomial &a)
 {
-	
-	/*a.coefficient[0] = a.n;
-	stream << a.coefficient[0] << " ";
-		for (int i = 1; i <= a.n + 1; i++)
-		{
-			stream << a.coefficient[i] << " ";
-		}
-	
-	return stream;*/
 	int  n = 0;
 		for (int i = 0; i <= a.n; i++)
 		{
