@@ -70,7 +70,6 @@ void main() {
 	Как выглядит input.txt : 2 3 3 1
 	Как выглядит output.txt : 4 5 4 3 0 2
 	Как выглядит outputSUM.txt : 4 8 7 4 0 2
-
 	*/
 
 }
