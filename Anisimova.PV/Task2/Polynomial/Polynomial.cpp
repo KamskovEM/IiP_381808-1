@@ -53,7 +53,7 @@ int Polynomial::SetCoeff(int i)
 int Polynomial::Ans(int x)
 {
 	int Ans = 0;
-	for (int i = 1; i <= n+1; i++)
+	for (int i = 0; i <= n+1; i++)
 	{
 		Ans = Ans + (coefficient[i] * pow(x, i));
 	}
@@ -64,7 +64,7 @@ int Polynomial::Ans(int x)
 Polynomial Polynomial::Deriv()
 {
 	Polynomial p(n);
-	for (int i = 1; i <= n; i++)
+	for (int i = 0; i <= n; i++)
 	{
 		p.coefficient[i] = i *coefficient[i + 1];
 	}
@@ -90,7 +90,7 @@ Polynomial& Polynomial::operator = (const Polynomial &a)
 		if (n == a.n) 
 		{
 			coefficient[0] = n;
-		   for (int i = 1; i <= n+1; i++)
+		   for (int i = 0; i <= n; i++)
 		   {
 			   coefficient[i] = a.coefficient[i];
 		   }
@@ -109,27 +109,26 @@ Polynomial& Polynomial::operator = (const Polynomial &a)
 //vyvod
 ostream &operator<<(ostream &stream, const Polynomial &a)
 {
-	int  n = 0;
+	/*int  n = 0;
 		for (int i = 0; i <= a.n; i++)
 		{
 			if (a.coefficient[i] != 0)
 				n++;
 		}
 	if (n != 0)
-	{
-		a.coefficient[0] = a.n;
-		stream << a.coefficient[0] << " ";
-			for (int i = 1; i <= a.n+1; i++)
+	{*/
+		stream << a.n << " ";
+			for (int i = 0; i <= a.n; i++)
 			{				
 				stream << a.coefficient[i] << " ";
 			}
 		
-	}
+	
 	return stream;
 }
 
 istream &operator>>(istream &stream, Polynomial &a)// перегруженный оператор ввода 
-{
+{ 
 	for (int i = 0; i <= a.n+1; i++)
 	{
 		stream >> a.coefficient[i];
