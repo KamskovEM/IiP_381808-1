@@ -146,6 +146,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="FunctionTab.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FunctionTab.cpp" />
+    <ClCompile Include="FunctionTabTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
