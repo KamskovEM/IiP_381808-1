@@ -90,8 +90,6 @@ Tabulator& Tabulator::operator= (const Tabulator& _Tab) {
 }
 istream& operator>>(istream & stream, Tabulator & _Tab) {
 	//Без этого чтение из файла не сработает
-	delete[] _Tab.xarray;
-	delete[] _Tab.yarray;
 	_Tab.xarray = new double[_Tab.n];
 	_Tab.yarray = new double[_Tab.n];
 	stream >> _Tab.begin >> _Tab.end >> _Tab.n;
