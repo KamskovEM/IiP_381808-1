@@ -22,7 +22,7 @@ class Polynomial
 public:
 	int n;            //Stepen' polinoma
 	int *coefficient; //ykazatel' na massiv koefficientif
-	
+
 	int&operator [](int index);    //index
 
 	// Konstryktory--------------------------

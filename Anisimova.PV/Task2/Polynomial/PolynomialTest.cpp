@@ -14,14 +14,14 @@ int main()
 	int n;
 
 
-	cout << "Vvedite stepen' polinoma P v diapozone  " << '\n';
+	cout << "Vvedite stepen' polinoma P   " << '\n';
 	cin >> n;
 
 	Polynomial P(n);
 
 
 	cout << "Vvedite koefficienty monomov polinoma: " << '\n';
-	for (int i = 0; i <= n; i++)
+	for (int i = 1; i <= n+1; i++)
 	{
 		cin >> P[i];
 
@@ -46,24 +46,27 @@ met:
 		cout << "Vvedite number element, koefficient kotorogo hotite yznat'" << '\n';
 
 		cin >> ind;
-		P[ind - 1];
+		P[ind-1];
 	}
 	catch (Exception& except) {
 		cout << "Element number " << except.ind
 			<< " is not exist" << endl;
 		goto met;
 	}
-	cout << P[ind - 1] << '\n';
+	cout << P[ind ] << '\n';
 
 	//zapis' v fail
 	ofstream os("Polynomial.txt");
 	os << P;
 	os.close();
 
+	Polynomial Pm(n);
 	//chtenie  faila
 	ifstream is("Polynomial.txt");
-	is >> P;
-	cout << "Dannye iz faila : " << P << endl;
+	is >> Pm;	
+	is.close();
+
+	cout << "Dannye iz faila : " << Pm << endl;
 
 	return 0;
 }
