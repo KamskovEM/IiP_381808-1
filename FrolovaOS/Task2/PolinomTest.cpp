@@ -11,21 +11,21 @@ int main()
 	cin >> n;
 	Polinom A(n), B(n);
 	cout << "Enter polynomial coefficients A: " << '\n';
-	for (int i = 0; i < n + 1; i++)
+	for (int i = 1; i <= n + 1; i++)
 	{
 		cin >> A[i];
 	}
-	cout << "Polynomial A: ";
-	A.OutputPolinom();
-	cout << "Derivative  A: ";
-	A.derivative().OutputPolinom();
+	cout << "Polynomial A: " << A << endl;;
+//	A.OutputPolinom();
+	cout << "Derivative  A: "<<A.derivative()<<endl;
+//	A.derivative().OutputPolinom();
 	int ind1;
 met:
 	try {
 		cout << "Enter the index of the element, whose coefficient you want to know" << '\n';
 
 		cin >> ind1;
-		A[ind1 - 1];
+		A[ind1];
 	}
 	catch (Exception& except) {
 		cout << "Element number " << except.ind
@@ -33,7 +33,7 @@ met:
 		goto met;
 	}
 
-	cout << "Coefficient is " << A[ind1 - 1] << '\n';
+	cout << "Coefficient is " << A[ind1 ] << '\n';
 	cout << "The degree of the polynomial is equal to " << A.Getn() << '\n';
 	cout << "Enter the value x " << '\n';
 	double x;
@@ -48,8 +48,8 @@ met:
 	is.close();
 
 
-	cout << "Read from file:  " << endl;
-	B.OutputPolinom();
+	cout << "Read from file:  " << B<<endl;
+//	B.OutputPolinom();
 	system("pause");
 	return 0;
 }
