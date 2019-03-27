@@ -53,8 +53,7 @@ Tabulator::~Tabulator()
 		x = NULL;
 		
 		delete[] y;
-		y = NULL;
-	
+		y = NULL;	
 }
 //Vozvrat
 double Tabulator::SetA()
