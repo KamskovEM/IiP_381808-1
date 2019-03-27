@@ -151,16 +151,16 @@ ostream& operator<<(ostream& stream, const Tabulator& c) {
 
 istream& operator>>(istream& stream, Tabulator& c)
 {
-	int q;
+	/*int q;
 	stream >> q;
 	c.n = q;
 	stream >> q;
 	c.a = q;
 	stream >> q;
-	c.b = q;
+	c.b = q;*/
 
 
-	//stream >>c.n>> c.a >> c.b;
+	stream >>c.n>> c.a >> c.b;
 	c.resX = new double[c.n + 1];
 	c.resY = new double[c.n + 1];
 	for (int i = 0; i <= c.n + 1; i++)
