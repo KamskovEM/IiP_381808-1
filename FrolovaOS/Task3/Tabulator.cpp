@@ -63,18 +63,7 @@ Tabulator::Tabulator(Tfun * _fun)
 	fun = _fun;
 }
 
-void Tabulator::Setn(int _n)
-{
-	n = _n;
-}
-void Tabulator::Seta(int _a)
-{
-	a = _a;
-}
-void Tabulator::Setb(int _b)
-{
-	b = _b;
-}
+
 void Tabulator::Tabulirovanie(Tfun * fun, double tab)
 {
 	resY = new double[n + 1];

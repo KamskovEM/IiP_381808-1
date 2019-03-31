@@ -26,16 +26,18 @@ using namespace std;
 int main()
 {
 
-	Tabulator  X, T;
+	Tabulator   T;
 	Tfun* ff;
-	//double(ff);
-	int h, h1;
+
+	int h, h1,h2;
 	cout << "Enter the number of tabs n" << '\n';
 	cin >> h;
-	X.Setn(h);
+
 	cout << "Enter the border of interval, a  and b " << endl;
-	cin >> h >> h1;
-	X.Seta(h); X.Setb(h1);
+	cin >> h1 >> h2;
+
+	Tabulator X(h, h1, h2);
+	
 
 	cout << "tabulation points : " << X.Getn() << endl;
 	cout << "Border of interval [ " << X.Geta() << "," << X.Getb() << " ]" << '\n';
@@ -53,9 +55,9 @@ int main()
 	case 2: {ff = ff2; X.Tabulirovanie(ff, g); break; }
 	case 3: {ff = ff3; X.Tabulirovanie(ff, g); break; }
 	}
-	//X.Tabulirovanie(ff, g);
+	
 	X.Show();
-	//Tabulator(ff);
+	
 	ofstream os;
 	os.open("Tabulator.txt");
 	os << X << endl;
