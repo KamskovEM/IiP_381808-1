@@ -15,21 +15,21 @@ void vyvod(double a, double b, int n,double rez,double(*function)(double))//func
 	{   
 		integrals c(a, b, n,rez, function);
 		I =c.LeftRectangle();
-		cout << "Результат:" << I << endl;
+		cout << "resultat:" << I << endl;
 		break;
 	}
 	case 2:
 	{
 		integrals c(a, b, n, rez, function);
 		I = c.RightRectangle();
-		cout << "Результат:" << I << endl;
+		cout << "resultat:" << I << endl;
 		break;
 	}
 	case 3:
 	{
 		integrals c(a, b, n, rez, function);
 		I = c.CentralRectangle();
-		cout << "Результат:" << I << endl;
+		cout << "resultat:" << I << endl;
 		break;
 	}
 	}
