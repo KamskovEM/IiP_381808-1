@@ -13,7 +13,7 @@ class Tabulator
 public:
 	//----------------------constructor 
 	Tabulator();//default constructor
-	Tabulator(int _n, int _a, int _b);//constructor initializertype conversion constructor
+	Tabulator(int _n, double _a, double _b);//constructor initializertype conversion constructor
 	Tabulator(const Tabulator &); //copy constructor
 	//Tabulator(int _n);//type conversion constructor
 	//----------------------destructor
@@ -23,7 +23,7 @@ private:
 	int n; //number of tabs n
 	double *resX; //array of values 
 	double *resY; //array of values 
-	int a, b;//tabulation interval
+	double a, b;//tabulation interval
 	Tfun* fun;
 
 public:
@@ -32,17 +32,13 @@ public:
 	int Geta();
 	int Getb();
 	
-	double ff(double x);
-	Tabulator operator-(const Tabulator & c1);
-	double tab(double n, int a, int b);
 	
-	Tabulator(Tfun* _fun);
+	double tab();
+	
 	void Tabulirovanie(Tfun* fun, double tab);
 	void Show();
-	double&operator [](int ind);
-	void OutputRes();
-	double ans(Tfun* fun, double x);
-	Tabulator& operator=(const Tabulator &);//overloaded = operator
+
+	
 
 
 	friend istream &operator >> (istream &s, Tabulator &c);//overloaded input operator

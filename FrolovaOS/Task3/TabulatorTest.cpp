@@ -29,7 +29,8 @@ int main()
 	Tabulator   T;
 	Tfun* ff;
 
-	int h, h1,h2;
+	int h;
+		double h1,h2;
 	cout << "Enter the number of tabs n" << '\n';
 	cin >> h;
 
@@ -45,7 +46,7 @@ int main()
 	cout << "1:sin(x)" << '\n';
 	cout << "2:cos(x)" << '\n';
 	cout << "3:exp(x)" << '\n';
-	double g = X.tab(X.Getn(), X.Geta(), X.Getb());
+	double g = X.tab();
 	int fvar;
 	cin >> fvar;
 

@@ -16,7 +16,7 @@ Tabulator::Tabulator()
 
 }
 //инициализатор
-Tabulator::Tabulator(int _n, int _a, int _b)
+Tabulator::Tabulator(int _n, double _a, double _b)
 {
 	int i;
 	n = _n;
@@ -58,32 +58,25 @@ Tabulator::~Tabulator()
 }
 
 
-Tabulator::Tabulator(Tfun * _fun)
-{
-	fun = _fun;
-}
+
 
 
 void Tabulator::Tabulirovanie(Tfun * fun, double tab)
 {
 	resY = new double[n + 1];
 	resX = new double[n + 1];
-	int k = a;
+	double k = a;
 	for (int i = 0; i <= n; i++)
 	{
-		resY[i] = ans(fun, k);
+		resY[i] = fun(k);
 		resX[i] = k;
 		k += tab;
 	}
-	resY[n + 1] = ans(fun, b);
+	resY[n + 1] = fun( b);
 	resX[n + 1] = b;
 
 }
-double Tabulator::ans(Tfun* fun, double k)
-{
-	double a = fun(k);
-	return a;
-}
+
 void Tabulator::Show()
 {
 	cout << "tabulation points : " << n << endl;;
@@ -114,7 +107,7 @@ int Tabulator::Getb()
 {
 	return b;
 }
-double Tabulator::tab(double n, int a, int b)
+double Tabulator::tab()
 {
 	double tab = (b - a) / (n + 1);
 	return tab;
@@ -124,7 +117,7 @@ ostream& operator<<(ostream& stream, const Tabulator& c) {
 
 
 
-	stream << "\n" << c.n << " " << c.a << " " << c.b << " ";
+	stream  << c.n << " " << c.a << " " << c.b << " ";
 	for (int i = 0; i <= c.n + 1; i++)
 	{
 		stream << c.resX[i] << " ";
@@ -134,6 +127,7 @@ ostream& operator<<(ostream& stream, const Tabulator& c) {
 	{
 		stream << c.resY[i] << " ";
 	}
+	stream << "\n";
 	return stream;
 
 }
@@ -149,9 +143,25 @@ istream& operator>>(istream& stream, Tabulator& c)
 	c.b = q;*/
 
 
-	stream >>c.n>> c.a >> c.b;
-	c.resX = new double[c.n + 1];
-	c.resY = new double[c.n + 1];
+
+	int n;
+	double a, b;
+	stream >> n>>a>>b;
+	if (c.n != n)
+	{
+		if (c.resX != NULL)
+			delete[] c.resX;
+		c.n = n;
+		c.resX = new double[n+1];
+	
+		if (c.resY != NULL)
+			delete[] c.resY;
+		
+		c.resY = new double[n+1];
+	}
+
+	c.a = a;
+		c.b = b;
 	for (int i = 0; i <= c.n + 1; i++)
 	{
 		stream >> c.resX[i];
