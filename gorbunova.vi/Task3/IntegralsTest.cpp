@@ -4,7 +4,7 @@
 #include "integrals.h"
 using namespace std;
 
-void vyvod(double a, double b, int n,double rez,double(*function)(double))//функция для выбора метода 
+void vyvod(double a, double b, int n,double rez,double(*function)(double))//functia dlia vybora metoda
 {
 	double I;
 	int w;
@@ -41,29 +41,28 @@ int main()
 	int q;
 	double a, b,rez=0;
 	int n;
-	setlocale(LC_ALL, "Rus");
-	cout << "Введите границы интеграла:" << endl;
+	cout << "Vvedite granitsy integrala:" << endl;
 	cin >> a >> b;
-	cout << "Введите кол-во шагов:" << endl;
+	cout << "vvedite kol-vo razbieniy:" << endl;
 	cin >> n;
-	cout << "Выберете вид функции:\n1)sin(x)\n2)cos(x)\n3)exp(x)" << endl;
+	cout << "vyberite vid:\n1)sin(x)\n2)cos(x)\n3)exp(x)" << endl;
 	cin >> q;
 	switch (q)
 	{
 	case 1:
-		cout << "Выберете медот вычиления:\n1)Метод левых прямоугольников\n2)Метод правых прямоугольников\n3)Метод средних прямоугольников" << endl;
+		cout << "vyberite metod vichisleniya:\n1)Metod levih priamougolnikov\n2)Metod pravih priamougolnikov\n3)Metod srednih priamougolnikov" << endl;
 		{
 		   vyvod(a,b,n,rez,sin);
 		}
 		break;
 	case 2:
-		cout << "Выберете медот вычиления:\n1)Метод левых прямоугольников\n2)Метод правых прямоугольников\n3)Метод средних прямоугольников" << endl;
+		cout << "vyberite metod vichisleniya:\n1)Metod levih priamougolnikov\n2)Metod pravih priamougolnikov\n3)Metod srednih priamougolnikov" << endl;
 		{
 		   vyvod(a,b,n,rez,cos);
 		}
 		break;
 	case 3:
-		cout << "Выберете медот вычиления:\n1)Метод левых прямоугольников\n2)Метод правых прямоугольников\n3)Метод средних прямоугольников" << endl;
+		cout << "vyberite metod vichisleniya:\n1)Metod levih priamougolnikov\n2)Metod pravih priamougolnikov\n3)Metod srednih priamougolnikov" << endl;
 		{
 		   vyvod(a,b,n,rez,exp);
 		}
