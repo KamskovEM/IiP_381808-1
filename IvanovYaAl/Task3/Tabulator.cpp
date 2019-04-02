@@ -4,7 +4,6 @@ Tabulator::Tabulator() {
 	n = 0;
 	a = 0.0;
 	b = 0.0;
-	inter = 0.0;
 	pointY = NULL;
 	pointX = NULL;
 }

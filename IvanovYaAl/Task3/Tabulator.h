@@ -11,7 +11,6 @@ private:
 	Tfunc* func;
 	int n;
 	double a, b;
-	double inter;
 	double* pointX;
 	double* pointY;
 public:
