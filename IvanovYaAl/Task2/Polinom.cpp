@@ -8,7 +8,7 @@ Polinom::Polinom(int def) {
 	n = def;
 	kof = new double[n + 1];
 	for (int i = 0; i <= n; i++) {
-		kof[i] = 0;
+		kof[i] = 0.0;
 	}
 }
 Polinom::Polinom(const Polinom &c) {
@@ -18,6 +18,7 @@ Polinom::Polinom(const Polinom &c) {
 		kof[i] = c.kof[i];
 	}
 }
+
 Polinom::~Polinom() {
 	kof = NULL;
 	n = 0;
@@ -42,12 +43,12 @@ Polinom& Polinom:: operator+(const Polinom &c) {//operator summi
 	}
 }
 istream &operator >> (istream &s, Polinom &c) {//vvod
-	for (int i = 1; i <= c.n; i++) {
+	for (int i = 0; i <= c.n; i++) {
 		s >> c.kof[i];
 	}
 	return s;
 }
-ostream &operator << (ostream &s, Polinom &c) {//vivod
+void Polinom::showPolinom(const Polinom& c) {//vivod
 	for (int i = 1; i <= c.n; i++) {
 		if (c.kof[i] == 0)
 			cout << "";
@@ -55,20 +56,33 @@ ostream &operator << (ostream &s, Polinom &c) {//vivod
 			if (i != 1) {
 				if (c.kof[i] > 0)
 					if (c.kof[i] != 1)
-						s << "+" << c.kof[i] << "x^" << i;
+						cout << "+" << c.kof[i] << "x^" << i;
 					else
-						s << "+" << "x^" << i;
+						cout << "+" << "x^" << i;
 				else
 					if (c.kof[i] != -1)
-						s << "" << c.kof[i] << "x^" << i << "";
+						cout << "" << c.kof[i] << "x^" << i << "";
 					else
-						s << "-" << "x^" << i << "";
+						cout << "-" << "x^" << i << "";
 
 			}
 		if (i == 1 && c.kof[i] != 0)
-			s << c.kof[i] << "x";
+			cout << c.kof[i] << "x";
 	}
 	cout << endl;
+}
+Polinom Polinom::Show_Pol() {
+	Polinom fas(n);
+	for (int i = 1; i <= n; i++) {
+		fas.kof[i] = kof[i];
+	}
+	showPolinom(fas);
+	return fas;
+}
+ostream &operator << (ostream &s, const Polinom &c) {
+	for (int i = 1; i < c.n; i++) {
+		s << c.kof[i] << " ";
+	}
 	return s;
 }
 Polinom& Polinom::operator = (const Polinom &c) {//operator ravenstva
@@ -103,7 +117,7 @@ Polinom Polinom::proizvod() {//proizvodnaya
 	for (int i = 1; i <= n; i++) {
 
 		if (i != 1) {
-			fas.kof[i] = kof[i] * (i);
+			fas.kof[i] = kof[i+1] * (i+1);
 		}
 		else if (i == 1) {
 			fas.kof[i] = kof[i];
@@ -112,7 +126,8 @@ Polinom Polinom::proizvod() {//proizvodnaya
 	showProizvod(fas);
 	return fas;
 }
-void Polinom::showProizvod(Polinom c) {//vivod proizvodnoy
+
+void Polinom::showProizvod(const Polinom& c) {//vivod proizvodnoy
 	for (int i = 1; i <= c.n; i++) {
 		if (c.kof[i] == 0)
 			cout << "";

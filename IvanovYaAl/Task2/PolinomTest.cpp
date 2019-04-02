@@ -9,21 +9,20 @@ int main() {
 	Polinom a(n1), b(n2), sum(n1 + n2);
 	cout << "Vvedite periy polinom: " << endl;
 	cin >> a;
-	cout << a;
+	a.showPolinom;
 	cout << "Vvedite vtoroy polinom: " << endl;
 	cin >> b;
-	cout << b;
+
 	double p;
 	cout << "Vvedite zna4enie X dlya s4eta: " << endl;
 	cin >> p;
 	cout << a.s4et(p) << endl;
 	cout << b.s4et(p) << endl;
-	sum = a + b;
-	cout << "Summa dvuh polinomov: " << sum << endl;
+	/*sum = a + b;
+	cout << "Summa dvuh polinomov: " << sum << endl;*/
 	Polinom dir(n1);
 	cout << "Proiavodnaya ot pervogo polinoma: " << endl;
 	dir = a.proizvod();
-
 	ofstream out("Polinom.txt");
 	out << a;
 	out.close();
