@@ -31,7 +31,7 @@ public:
 	~SongElement();
 
 	//Геттеры и сеттеры
-	std::string getSongtitle() const { return songTitle; }
+	std::string getSongTitle() const { return songTitle; }
 	void setSongTitle(const std::string& _c) { songTitle = _c; }
 
 	std::string getLyricsAuthor() const { return lyricsAuthor; }
@@ -46,7 +46,7 @@ public:
 	std::string getAlbumTitle() const { return albumTitle; }
 	void setAlbumTitle(const std::string& _c) { albumTitle = _c; }
 		
-
+	void SetEmpty();
 
 	friend std::ostream& operator<<(std::ostream& stream, const SongElement& _c);
 	friend std::istream& operator>>(std::istream&, SongElement&);

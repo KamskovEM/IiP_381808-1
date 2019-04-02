@@ -3,8 +3,8 @@
 
 SongElement::SongElement()
 {
-	songTitle = lyricsAuthor = musicAuthor = perfomer = albumTitle = std::string(); // Присваиваем пустую строку
 	releaseDate.day = releaseDate.month = releaseDate.year = 0;
+	songTitle = lyricsAuthor = musicAuthor = perfomer = albumTitle = std::string(); // Присваиваем пустую строку	
 }
 
 SongElement::SongElement(const std::string& songTitle, const std::string& lyricsAuthor, const std::string& musicAuthor, const std::string& perfomer, Date releaseDate, const std::string& albumTitle) 
@@ -19,6 +19,12 @@ SongElement::SongElement(const std::string& songTitle, const std::string& lyrics
 
 SongElement::~SongElement()
 {
+	releaseDate.day = releaseDate.month = releaseDate.year = 0;
+}
+
+void SongElement::SetEmpty()
+{
+	songTitle = lyricsAuthor = musicAuthor = perfomer = albumTitle = std::string(); // Присваиваем пустую строку
 	releaseDate.day = releaseDate.month = releaseDate.year = 0;
 }
 
