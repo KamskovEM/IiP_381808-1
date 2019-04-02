@@ -6,6 +6,7 @@
 using namespace std;
 
 typedef double Tfun(double);
+
 class Tabulator
 {
 	Tfun* f;

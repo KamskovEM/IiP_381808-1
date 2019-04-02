@@ -22,6 +22,7 @@ int main()
 		Tabulator T(a, b, n);
 
 		T.ABN(a, b, n);
+
 		cout << "Interval [" << T.SetA() << "; " << T.SetB() << "] " << '\n';
 		cout << "Chislo tochek n= " << T.SetN() << '\n';
 		//Menu
