@@ -15,6 +15,13 @@ Songs::Songs(int count, int buf)
 	base = new SongElement[length];
 }
 
+Songs::Songs(std::istream &stream, int buf) ??
+{
+	
+	Songs tmp(stream);
+	_c = tmp;
+}
+
 Songs::Songs(const Songs & _c)
 {
 	length = _c.length;
@@ -35,10 +42,10 @@ Songs::~Songs()
 	base = nullptr;
 }
 
-void Songs::Add(const std::string & songTitle, const std::string & lyricsAuthor, const std::string & musicAuthor, const std::string & perfomer, Date releaseDate, const std::string & albumTitle)
+void Songs::Add(const std::string &songTitle, const std::string &lyricsAuthor, const std::string &musicAuthor, const std::string &perfomer, const Date &releaseDate, const std::string &albumTitle)
 {
-	
 	SongElement tmp(songTitle, lyricsAuthor, musicAuthor, perfomer, releaseDate, albumTitle);
+	Add(tmp);
 }
 
 void Songs::Add(const SongElement& _c)
@@ -62,62 +69,88 @@ void Songs::Add(const SongElement& _c)
 	}
 }
 
-void Songs::Change(const std::string & songTitle)
+bool Songs::Change(const std::string & songTitle, const std::string & lyricsAuthor, const std::string & musicAuthor, const std::string & perfomer, const Date & releaseDate, const std::string & albumTitle)
 {
 	for (int i = 0; i < rlength; i++)
 	{
 		if (base[i].getSongTitle().compare(songTitle) == 0)
 		{
-
+			base[i] = SongElement(songTitle, lyricsAuthor, musicAuthor, perfomer, releaseDate, albumTitle);
+			return true;
 		}
 	}
+	return false;
+}
+
+void Songs::Find(std::ostream & stream, const std::string & songTitle, const std::string & perfomer)
+{
+	int i = 0;
+	for (int i = 0; i < rlength; i++)
+	{
+		if ((base[i].getSongTitle().compare(songTitle) == 0) && (base[i].getPerfomer().compare(perfomer) == 0))
+		{
+			i++;
+			stream << base[i];			
+		}
+	}
+	if (i == 0) stream << "Композиции с названием \"" << songTitle << "\" и исполнителем \"" << perfomer << "\" отсутвует в базе" << std::endl;
 }
 
 void Songs::AllByPerfomer(std::ostream& stream, const std::string & perfomer) const
 {
+	int i = 0;
 	for (int i = 0; i < rlength; i++)
 	{
 		if (base[i].getPerfomer().compare(perfomer) == 0)
 		{
 			stream << base[i];
+			i++;
 		}
 	}
+	if (i == 0) stream << "Композиции исполнителя \"" << perfomer << "\" отсутвуют в базе" << std::endl;
 }
 
 void Songs::AllByLyricsAuthor(std::ostream & stream, const std::string & lyricsAuthor) const
 {
+	int i = 0;
 	for (int i = 0; i < rlength; i++)
 	{
 		if (base[i].getPerfomer().compare(lyricsAuthor) == 0)
 		{
 			stream << base[i];
+			i++;
 		}
 	}
+	if (i == 0) stream << "Композиции поэта \"" << lyricsAuthor << "\" отсутвуют в базе" << std::endl;
 }
+
 
 void Songs::AllByMusicAuthor(std::ostream & stream, const std::string & musicAuthor) const
 {
+	int i = 0;
 	for (int i = 0; i < rlength; i++)
 	{
 		if (base[i].getPerfomer().compare(musicAuthor) == 0)
 		{
 			stream << base[i];
+			i++;
 		}
 	}
+	if (i == 0) stream << "Композиции композитора \"" << musicAuthor << "\" отсутвуют в базе" << std::endl;
 
 }
 
-void Songs::DeleteBySongTitle(const std::string & songTitle)
+bool Songs::DeleteBySongTitle(const std::string & songTitle)
 {
 	for (int i = 0; i < rlength; i++)
 	{
 		if (base[i].getSongTitle().compare(songTitle) == 0)
 		{
 			base[i].SetEmpty();
-			return;
+			return true;
 		}
 	}
-	throw SongNotExist;
+	return false;
 }
 
 SongElement& Songs::operator[](int index)
@@ -126,6 +159,22 @@ SongElement& Songs::operator[](int index)
 	return base[index];
 }
 
+std::ostream & operator<<(std::ostream &, const Songs & _c)
+{
 
+	// TODO: вставьте здесь оператор return
+}
 
+std::istream & operator>>(std::istream &stream, Songs& _c)
+{
+	stream >> _c.rlength;
+	_c.length = _c.rlength + _c.buf;
+	_c.base = new SongElement[_c.length];
+	for (int i = 0; i < rlength; i++)
+	{
+		stream >> _c.base[i];
+	}
 
+	
+	return stream;
+}

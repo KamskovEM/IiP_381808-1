@@ -13,22 +13,23 @@ private:
 public:
 	Songs(); //Конструктор по-умолчанию
 	Songs(int count, int buf = 10); //Констурктор инициализатор
+	Songs(std::istream& stream, int buf = 10); //Конструктор инициализатор из потока
 	Songs(const Songs& _c); //Констурктор копирования 
 	~Songs();
 
 	//Добавление записи в песенник
-	void Add(const std::string& songTitle, const std::string& lyricsAuthor, const std::string& musicAuthor, const std::string& perfomer, Date releaseDate, const std::string& albumTitle = nullptr);
+	void Add(const std::string& songTitle, const std::string& lyricsAuthor, const std::string& musicAuthor, const std::string& perfomer, const Date &releaseDate, const std::string& albumTitle = nullptr);
 	void Add(const SongElement& _c);
 
-	void Change(const std::string& songTitle); //Изменение данных песни, выбранной по названию
+	bool Change(const std::string& songTitle, const std::string& lyricsAuthor, const std::string& musicAuthor, const std::string& perfomer, const Date &releaseDate, const std::string& albumTitle = nullptr); //Изменение данных песни, выбранной по названию
 
-	void Find(std::ostream&, const std::string& songTitle); //Поиск композиции по названию
+	void Find(std::ostream&, const std::string& songTitle, const std::string &perfomer); //Поиск композиции по названию и композитору
 
 	void AllByPerfomer(std::ostream& stream, const std::string& perfomer) const; //Все композиции исполнителя 
 	void AllByLyricsAuthor(std::ostream& stream, const std::string& lyricsAuthor) const; //Все композиции поэта 
 	void AllByMusicAuthor(std::ostream& stream, const std::string& musicAuthor) const; //Все композиции композитора 
 
-	void DeleteBySongTitle(const std::string& songTitle);
+	bool DeleteBySongTitle(const std::string& songTitle);
 
 	int Count() const { return rlength; }
 
@@ -39,7 +40,7 @@ public:
 
 };
 
-enum Exeption {SongNotExist, OutOfRange};
+enum Exeption {OutOfRange};
 
 
 

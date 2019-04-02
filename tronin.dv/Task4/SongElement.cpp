@@ -3,7 +3,7 @@
 
 SongElement::SongElement()
 {
-	releaseDate.day = releaseDate.month = releaseDate.year = 0;
+	//releaseDate.day = releaseDate.month = releaseDate.year = 0;
 	songTitle = lyricsAuthor = musicAuthor = perfomer = albumTitle = std::string(); // Присваиваем пустую строку	
 }
 
@@ -13,7 +13,7 @@ SongElement::SongElement(const std::string& songTitle, const std::string& lyrics
 	if (&albumTitle == nullptr)
 		this->albumTitle = std::string();
 	else
-		this->albumTitle = albumTitle;	
+		this->albumTitle = albumTitle;
 }
 
 
