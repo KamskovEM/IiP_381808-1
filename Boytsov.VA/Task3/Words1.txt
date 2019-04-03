@@ -8,3 +8,8 @@ wolf волк
 orange апельсин
 mouse мышь
 apple яблоко
+dog собака
+snake змея
+wolf волк
+orange апельсин
+mouse мышь
