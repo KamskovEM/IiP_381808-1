@@ -1,9 +1,8 @@
-#include "Dictionary.h"
+ï»¿#include "Dictionary.h"
 #include <math.h>
 #include <iostream>
 #include <string>
 #include <vector>
-
 using namespace std;
 
 Dictionary::Dictionary()
@@ -83,7 +82,7 @@ void Dictionary::EditTranslation(string s1, string s2)
 		if (EngWords[i].compare(s1) == 0)
 		{
 			RusWords[i] = s2;
-			cout << "Ïåðåâîä èçìåíåí" << endl << endl;
+			cout << "ÐŸÐµÑ€ÐµÐ²Ð¾Ð´ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½" << endl << endl;
 			return;
 		}
 	}
@@ -92,11 +91,11 @@ void Dictionary::EditTranslation(string s1, string s2)
 		if (RusWords[i].compare(s1) == 0)
 		{
 			EngWords[i] = s2;
-			cout << "Ïåðåâîä èçìåíåí" << endl << endl;
+			cout << "ÐŸÐµÑ€ÐµÐ²Ð¾Ð´ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½" << endl << endl;
 			return;
 		}
 	}
-	cout << "Äàííîãî ñëîâà íåò â ñëîâàðå" << endl << endl;
+	cout << "Ð”Ð°Ð½Ð½Ð¾Ð³Ð¾ ÑÐ»Ð¾Ð²Ð° Ð½ÐµÑ‚ Ð² ÑÐ»Ð¾Ð²Ð°Ñ€Ðµ" << endl << endl;
 }
 
 void Dictionary::LearnTranslation(string s1)
@@ -105,7 +104,7 @@ void Dictionary::LearnTranslation(string s1)
 	{
 		if (EngWords[i].compare(s1) == 0)
 		{
-			cout <<" Ïåðåâîä äàííîãî ñëîâà : "<< RusWords[i] << endl << endl;
+			cout <<" ÐŸÐµÑ€ÐµÐ²Ð¾Ð´ Ð´Ð°Ð½Ð½Ð¾Ð³Ð¾ ÑÐ»Ð¾Ð²Ð° : "<< RusWords[i] << endl << endl;
 			return;
 		}
 	}
@@ -113,11 +112,11 @@ void Dictionary::LearnTranslation(string s1)
 	{
 		if (RusWords[i].compare(s1) == 0)
 		{
-			cout << "Ïåðåâîä äàííîãî ñëîâà : " << EngWords[i] << endl << endl;
+			cout << "ÐŸÐµÑ€ÐµÐ²Ð¾Ð´ Ð´Ð°Ð½Ð½Ð¾Ð³Ð¾ ÑÐ»Ð¾Ð²Ð° : " << EngWords[i] << endl << endl;
 			return;
 		}
 	}
-	cout << "Äàííîãî ñëîâà íåò â ñëîâàðå" << endl << endl;
+	cout << "Ð”Ð°Ð½Ð½Ð¾Ð³Ð¾ ÑÐ»Ð¾Ð²Ð° Ð½ÐµÑ‚ Ð² ÑÐ»Ð¾Ð²Ð°Ñ€Ðµ" << endl << endl;
 }
 
 void Dictionary::CheckWord(string s1)
@@ -138,21 +137,21 @@ void Dictionary::CheckWord(string s1)
 		}
 	}
 	if (flag == true)
-		cout << "Ñëîâî åñòü â ñëîâàðå" << endl << endl;
+		cout << "Ð¡Ð»Ð¾Ð²Ð¾ ÐµÑÑ‚ÑŒ Ð² ÑÐ»Ð¾Ð²Ð°Ñ€Ðµ" << endl << endl;
 	else
-		cout << "Ñëîâà íåò â ñëîâàðå" << endl << endl;
+		cout << "Ð¡Ð»Ð¾Ð²Ð° Ð½ÐµÑ‚ Ð² ÑÐ»Ð¾Ð²Ð°Ñ€Ðµ" << endl << endl;
 }
 
 void Dictionary::NumberWords()
 {
 
-	cout << "Êîëè÷åñòâî ñëîâ â ñëîâàðå = " << length << endl << endl;
+	cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»Ð¾Ð² Ð² ÑÐ»Ð¾Ð²Ð°Ñ€Ðµ = " << length << endl << endl;
 }
 
 void Dictionary::FilePreparation(const char* name)
 {
 	ofstream os;
-	os.open(name); // ôàéë äëÿ çàïèñè
+	os.open(name); // Ñ„Ð°Ð¹Ð» Ð´Ð»Ñ Ð·Ð°Ð¿Ð¸ÑÐ¸
 	SaveDictionary(os);
 	os.close();
 }

@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,23 +10,23 @@ using namespace std;
 class Dictionary
 {
 public:
-	Dictionary();//Конструктор по умолчанию
-	Dictionary(Dictionary &v);//Конструктор копирования
-	Dictionary(istream& filename);//Контруктор инициализации
-	~Dictionary();//Деструктор 
-	Dictionary& operator=(const Dictionary& v);//Перегрузка операции присваивания
-	Dictionary& operator+=(const Dictionary& v);//Перегрузка операции присваивания друх словарей
-	void AddWords(string s1, string s2);//Фукция добавления слов в словарь
-	void EditTranslation(string s1, string s2);//Функция изменения перевода указанного слова
-	void LearnTranslation(string s1);//Функция получения перевода выбранного слова
-	void CheckWord(string s1);//Функция проверки наличия слова в словаре
-	void NumberWords();//Функция вывода количества слов в словаре
-	void FilePreparation(const char* name);//Функция подготовки файла к записи
-	void SaveDictionary(ostream& filename);//Функция записи в файл
-	friend ostream& operator<<(ostream& stream, const Dictionary& v);//Перегрузка операции вывода на консоль
+	Dictionary();//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+	Dictionary(Dictionary &v);//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
+	Dictionary(istream& filename);//РљРѕРЅС‚СЂСѓРєС‚РѕСЂ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
+	~Dictionary();//Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
+	Dictionary& operator=(const Dictionary& v);//РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С†РёРё РїСЂРёСЃРІР°РёРІР°РЅРёСЏ
+	Dictionary& operator+=(const Dictionary& v);//РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С†РёРё РїСЂРёСЃРІР°РёРІР°РЅРёСЏ РґСЂСѓС… СЃР»РѕРІР°СЂРµР№
+	void AddWords(string s1, string s2);//Р¤СѓРєС†РёСЏ РґРѕР±Р°РІР»РµРЅРёСЏ СЃР»РѕРІ РІ СЃР»РѕРІР°СЂСЊ
+	void EditTranslation(string s1, string s2);//Р¤СѓРЅРєС†РёСЏ РёР·РјРµРЅРµРЅРёСЏ РїРµСЂРµРІРѕРґР° СѓРєР°Р·Р°РЅРЅРѕРіРѕ СЃР»РѕРІР°
+	void LearnTranslation(string s1);//Р¤СѓРЅРєС†РёСЏ РїРѕР»СѓС‡РµРЅРёСЏ РїРµСЂРµРІРѕРґР° РІС‹Р±СЂР°РЅРЅРѕРіРѕ СЃР»РѕРІР°
+	void CheckWord(string s1);//Р¤СѓРЅРєС†РёСЏ РїСЂРѕРІРµСЂРєРё РЅР°Р»РёС‡РёСЏ СЃР»РѕРІР° РІ СЃР»РѕРІР°СЂРµ
+	void NumberWords();//Р¤СѓРЅРєС†РёСЏ РІС‹РІРѕРґР° РєРѕР»РёС‡РµСЃС‚РІР° СЃР»РѕРІ РІ СЃР»РѕРІР°СЂРµ
+	void FilePreparation(const char* name);//Р¤СѓРЅРєС†РёСЏ РїРѕРґРіРѕС‚РѕРІРєРё С„Р°Р№Р»Р° Рє Р·Р°РїРёСЃРё
+	void SaveDictionary(ostream& filename);//Р¤СѓРЅРєС†РёСЏ Р·Р°РїРёСЃРё РІ С„Р°Р№Р»
+	friend ostream& operator<<(ostream& stream, const Dictionary& v);//РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С†РёРё РІС‹РІРѕРґР° РЅР° РєРѕРЅСЃРѕР»СЊ
 private:
-	int length;//Длина словаря
-	string *RusWords;//Русские слова словаря
-	string *EngWords;//Английские слова словаря
+	int length;//Р”Р»РёРЅР° СЃР»РѕРІР°СЂСЏ
+	string *RusWords;//Р СѓСЃСЃРєРёРµ СЃР»РѕРІР° СЃР»РѕРІР°СЂСЏ
+	string *EngWords;//РђРЅРіР»РёР№СЃРєРёРµ СЃР»РѕРІР° СЃР»РѕРІР°СЂСЏ
 };
 ostream& operator<<(ostream& stream, const Dictionary& v);

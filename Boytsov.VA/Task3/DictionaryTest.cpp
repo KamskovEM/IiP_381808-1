@@ -1,4 +1,4 @@
-#include "Dictionary.h"
+п»ї#include "Dictionary.h"
 #include <iostream>
 #include <locale.h>
 #include <string>
@@ -10,63 +10,63 @@ void main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	setlocale(LC_ALL, "rus");
-	// Чтение из потока
-	ifstream is; // поток для чтения
-	is.open("Words1.txt"); // файл для чтения
+	// Р§С‚РµРЅРёРµ РёР· РїРѕС‚РѕРєР°
+	ifstream is;
+	is.open("Words1.txt"); // С„Р°Р№Р» РґР»СЏ С‡С‚РµРЅРёСЏ
 	Dictionary Dict1(is);
 	is.close();
-	is.open("Words2.txt"); // файл для чтения
+	is.open("Words2.txt"); // С„Р°Р№Р» РґР»СЏ С‡С‚РµРЅРёСЏ
 	Dictionary Dict2(is);
 	is.close();
-	is.open("output.txt"); // файл для чтения
+	is.open("output.txt"); // С„Р°Р№Р» РґР»СЏ С‡С‚РµРЅРёСЏ
 	Dictionary DictTogether(is);
 	is.close();
 	DictTogether = Dict2;
-	cout << "Содержимое словаря DictTogether, после присваивания ему Dict2: " << endl;
+	cout << "РЎРѕРґРµСЂР¶РёРјРѕРµ СЃР»РѕРІР°СЂСЏ DictTogether, РїРѕСЃР»Рµ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ РµРјСѓ Dict2: " << endl;
 	cout << DictTogether << endl;
 	Dict1 +=  Dict2;
-	cout << "Содержимое словаря Dict1, после слияния с Dict2: " << endl;
+	cout << "РЎРѕРґРµСЂР¶РёРјРѕРµ СЃР»РѕРІР°СЂСЏ Dict1, РїРѕСЃР»Рµ СЃР»РёСЏРЅРёСЏ СЃ Dict2: " << endl;
 	cout << Dict1 << endl;
 	int Answer;
 	string Word, Translation;
 	do
 	{
-		cout << "Введите цифру действия, которое хотите выполнить: " << endl;
-		cout << "1 - Добавить в словарь слово и его перевод" << endl;
-		cout << "2 - Изменить перевод указанного слова" << endl;
-		cout << "3 - Узнать перевод выбранного слова" << endl;
-		cout << "4 - Проверить наличие слова в словаре" << endl;
-		cout << "5 - Узнать число слов в словаре" << endl;
-		cout << "6 - Сохрать словарь" << endl;
-		cout << "0 - Выход из программы" << endl;
+		cout << "Р’РІРµРґРёС‚Рµ С†РёС„СЂСѓ РґРµР№СЃС‚РІРёСЏ, РєРѕС‚РѕСЂРѕРµ С…РѕС‚РёС‚Рµ РІС‹РїРѕР»РЅРёС‚СЊ: " << endl;
+		cout << "1 - Р”РѕР±Р°РІРёС‚СЊ РІ СЃР»РѕРІР°СЂСЊ СЃР»РѕРІРѕ Рё РµРіРѕ РїРµСЂРµРІРѕРґ" << endl;
+		cout << "2 - РР·РјРµРЅРёС‚СЊ РїРµСЂРµРІРѕРґ СѓРєР°Р·Р°РЅРЅРѕРіРѕ СЃР»РѕРІР°" << endl;
+		cout << "3 - РЈР·РЅР°С‚СЊ РїРµСЂРµРІРѕРґ РІС‹Р±СЂР°РЅРЅРѕРіРѕ СЃР»РѕРІР°" << endl;
+		cout << "4 - РџСЂРѕРІРµСЂРёС‚СЊ РЅР°Р»РёС‡РёРµ СЃР»РѕРІР° РІ СЃР»РѕРІР°СЂРµ" << endl;
+		cout << "5 - РЈР·РЅР°С‚СЊ С‡РёСЃР»Рѕ СЃР»РѕРІ РІ СЃР»РѕРІР°СЂРµ" << endl;
+		cout << "6 - РЎРѕС…СЂР°С‚СЊ СЃР»РѕРІР°СЂСЊ" << endl;
+		cout << "0 - Р’С‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹" << endl;
 		cin >> Answer;
 
 		switch (Answer)
 		{
 		case 1:
-			cout << "Введите слово на английском языке" << endl;
+			cout << "Р’РІРµРґРёС‚Рµ СЃР»РѕРІРѕ РЅР° Р°РЅРіР»РёР№СЃРєРѕРј СЏР·С‹РєРµ" << endl;
 			cin.ignore(32767, '\n');
 			getline(cin, Word);
-			cout << "Введите перевод этого слова" << endl;
+			cout << "Р’РІРµРґРёС‚Рµ РїРµСЂРµРІРѕРґ СЌС‚РѕРіРѕ СЃР»РѕРІР°" << endl;
 			getline(cin, Translation);
 			Dict1.AddWords(Word, Translation);
 			break;
 		case 2:
-			cout << "Введите слово, перевод которого хотите изменить" << endl;
+			cout << "Р’РІРµРґРёС‚Рµ СЃР»РѕРІРѕ, РїРµСЂРµРІРѕРґ РєРѕС‚РѕСЂРѕРіРѕ С…РѕС‚РёС‚Рµ РёР·РјРµРЅРёС‚СЊ" << endl;
 			cin.ignore(32767, '\n');
 			getline(cin, Word);
-			cout << "Введите перевод данного слова" << endl;
+			cout << "Р’РІРµРґРёС‚Рµ РїРµСЂРµРІРѕРґ РґР°РЅРЅРѕРіРѕ СЃР»РѕРІР°" << endl;
 			getline(cin, Translation);
 			Dict1.EditTranslation(Word, Translation);
 			break;
 		case 3:
-			cout << "Введите слово, перевод которого вы хотите узнать" << endl;
+			cout << "Р’РІРµРґРёС‚Рµ СЃР»РѕРІРѕ, РїРµСЂРµРІРѕРґ РєРѕС‚РѕСЂРѕРіРѕ РІС‹ С…РѕС‚РёС‚Рµ СѓР·РЅР°С‚СЊ" << endl;
 			cin.ignore(32767, '\n');
 			getline(cin, Word);
 			Dict1.LearnTranslation(Word);
 			break;
 		case 4:
-			cout << "Введите слово, наличие которого хотите проверить" << endl;
+			cout << "Р’РІРµРґРёС‚Рµ СЃР»РѕРІРѕ, РЅР°Р»РёС‡РёРµ РєРѕС‚РѕСЂРѕРіРѕ С…РѕС‚РёС‚Рµ РїСЂРѕРІРµСЂРёС‚СЊ" << endl;
 			cin.ignore(32767, '\n');
 			getline(cin, Word);
 			Dict1.CheckWord(Word);
