@@ -13,3 +13,8 @@ snake змея
 wolf волк
 orange апельсин
 mouse мышь
+dog собака
+snake змея
+wolf волк
+orange апельсин
+mouse мышь
