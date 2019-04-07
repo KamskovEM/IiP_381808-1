@@ -146,6 +146,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Tabulating.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Tabulating.cpp" />
+    <ClCompile Include="TabulatingTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
