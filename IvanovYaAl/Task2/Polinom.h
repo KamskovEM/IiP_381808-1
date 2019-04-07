@@ -8,9 +8,10 @@
 using namespace std;
 
 class Polinom {
-public:
+private:
 	int n;
 	double *kof;
+public:
 	Polinom();
 	Polinom(int def);
 	Polinom(const Polinom &c);
@@ -20,10 +21,12 @@ public:
 	Polinom& operator+(const Polinom &c);
 	Polinom proizvod();
 	friend istream &operator >> (istream &s, Polinom &c);
-	friend ostream &operator << (ostream &s, Polinom &c);
+	friend ostream &operator << (ostream &s, const Polinom &c);
 	Polinom& operator = (const Polinom &c);
 	double s4et(double x);
-	void showProizvod(Polinom c);
+	void showProizvod(const Polinom& c);
+	void showPolinom(const Polinom& c);
+	Polinom Show_Pol();
 };
 ostream& operator << (ostream &stream, const Polinom &c);
 istream& operator >> (istream &stream, Polinom &c);
