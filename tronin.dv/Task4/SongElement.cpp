@@ -3,18 +3,12 @@
 
 SongElement::SongElement()
 {
-	//releaseDate.day = releaseDate.month = releaseDate.year = 0;
+	//У структуры Date имеется свой констуруктор по-умолчанию
 	songTitle = lyricsAuthor = musicAuthor = perfomer = albumTitle = std::string(); // Присваиваем пустую строку	
 }
 
-SongElement::SongElement(const std::string& songTitle, const std::string& lyricsAuthor, const std::string& musicAuthor, const std::string& perfomer, Date releaseDate, const std::string& albumTitle) 
-	: songTitle(songTitle), lyricsAuthor(lyricsAuthor), musicAuthor(musicAuthor), perfomer(perfomer), releaseDate(releaseDate)
-{
-	if (&albumTitle == nullptr)
-		this->albumTitle = std::string();
-	else
-		this->albumTitle = albumTitle;
-}
+SongElement::SongElement(const std::string& songTitle, const std::string& lyricsAuthor, const std::string& musicAuthor, const std::string& perfomer, Date releaseDate, const std::string& albumTitle)
+	: songTitle(songTitle), lyricsAuthor(lyricsAuthor), musicAuthor(musicAuthor), perfomer(perfomer), releaseDate(releaseDate), albumTitle(albumTitle) {}
 
 
 SongElement::~SongElement()
@@ -31,39 +25,41 @@ void SongElement::SetEmpty()
 
 std::ostream& operator<<(std::ostream& stream, const Date& _c)
 {
-	stream << _c.day << '.' << _c.month << '.' << _c.year;
+	stream << std::setw(2) << (int)_c.day << '.' << std::setw(2) << (int)_c.month << '.' << (int)_c.year; //setw - форматирвоанный вывод в 2 символа
 	return stream;
 }
 
 std::istream& operator>>(std::istream& stream, Date& _c)
 {
-	stream >> _c.day;
+	int tmp;
+	stream >> tmp;
+	_c.day = tmp;
 	char c;
 	stream >> c; //Забираем точку 
-	stream >> _c.month;
+	stream >> tmp;
+	_c.month = tmp;
 	stream >> c;
-	stream >> _c.year;	
+	stream >> tmp;
+	_c.year = tmp;
+	return stream;
 }
 
 std::ostream& operator<<(std::ostream& stream, const SongElement& _c)
 {
-	stream << _c.songTitle << ' ' << _c.lyricsAuthor << ' ' << _c.musicAuthor << ' ' << _c.perfomer << ' ' << _c.releaseDate << ' ' << _c.albumTitle << '\n';
+	stream << _c.songTitle << '\t' << _c.lyricsAuthor << '\t' << _c.musicAuthor << '\t' << _c.perfomer << '\t' << _c.releaseDate << '\t' << _c.albumTitle; //Для удобства ручного просмотра файла
 	return stream;
 }
 
 std::istream & operator>>(std::istream& stream, SongElement& _c)
 {
-	stream >> _c.songTitle;
-	stream >> _c.lyricsAuthor;
-	stream >> _c.musicAuthor;
-	stream >> _c.perfomer;
+	//Для удобства записываем все поля в одну строку, разделяя символом табуляции 
+	std::getline(stream, _c.songTitle, '\t');
+	std::getline(stream, _c.lyricsAuthor, '\t');
+	std::getline(stream, _c.musicAuthor, '\t');
+	std::getline(stream, _c.perfomer, '\t');
 	stream >> _c.releaseDate;
-	char c;	
 	std::string tmp;
-	stream >> c; //Забираем пробел 
-	std::getline(stream, tmp);
-	if (!(tmp.length == 1)) //Если в строке не только символ перехода на новую строку
-		_c.albumTitle = tmp;
+	std::getline(stream, _c.albumTitle);
 	return stream;
 }
 

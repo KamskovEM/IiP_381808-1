@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "SongElement.h"
 #include <string>
+#include <iomanip>
 
 struct Date
 {
@@ -29,7 +30,7 @@ private:
 	
 public:
 	SongElement();// Конструктор по-умолчанию
-	SongElement(const std::string& songTitle, const std::string& lyricsAuthor, const std::string& musicAuthor, const std::string& perfomer, Date releaseDate, const std::string& albumTitle = nullptr); // Конструктор инициализации (поле "название альбома" по умолчанию пустое)
+	SongElement(const std::string& songTitle, const std::string& lyricsAuthor, const std::string& musicAuthor, const std::string& perfomer, Date releaseDate, const std::string& albumTitle); // Конструктор инициализации (поле "название альбома" по умолчанию пустое)
 	~SongElement();
 
 	//Геттеры и сеттеры
