@@ -146,6 +146,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SongElement.h" />
+    <ClInclude Include="Songs.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SongElement.cpp" />
+    <ClCompile Include="Songs.cpp" />
+    <ClCompile Include="SongsTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
