@@ -1,0 +1,5 @@
+dog собака
+snake змея
+wolf волк
+orange апельсин
+mouse мышь

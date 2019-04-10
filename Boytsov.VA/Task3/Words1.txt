@@ -1,0 +1,9 @@
+cat кошка
+bear медведь
+benefit превосходство
+injury травма
+dog собака
+snake змея
+wolf волк
+orange апельсин
+mouse мышь
