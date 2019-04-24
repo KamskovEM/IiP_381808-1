@@ -1,0 +1,6 @@
+5
+3213 Snickers 50 20
+22 Mars 50 30
+3333 Gum 30 15
+145 Lollipop 40 10
+5 Pepsi 60 20
