@@ -23,7 +23,7 @@ public:
 class Kassa {
 private:
 	int buf; // massiv s zapasom
-	const int del = 10; // delta
+	static const int del = 10; // delta
 	int size; // kol-vo tovarov
 	Tovar* tovar; // massiv tovarov
 public:
@@ -32,11 +32,11 @@ public:
 	Kassa(int); // konstruktor inicializacii
 	~Kassa(); // destruktor
 	//----------------------------------------------
-	Tovar Info(int); // nachalnye data i vremya
-	int Scan(int); // skanirovanie tovara(polychenie ego indeksa d massive cherez ego kod)
-	void Delete(int); // ydalenie tovara iz korziny
-	void CreateCheck(); // sozdanie checka
-	void Add(int); // dobavlenie tovara v korziny
+	Tovar Info(int); // informaciya o tovare (polychaet shtrih kod tovara)
+	int Scan(int); // skanirovanie tovara (polychenie ego indeksa d massive cherez ego shtrih kod)
+	bool Delete(int); // ydalenie tovara iz korziny (polychaet shtrih kod tovara)
+	void CreateCheck(); // sozdanie checka 
+	bool Add(int); // dobavlenie tovara v korziny (polychaet shtrih kod tovara)
 	// operacii vvoda/vivoda v potok ---------------
 	friend ostream & operator << (ostream & stream, Kassa const &);
 	friend istream & operator >> (istream & stream, Kassa &);

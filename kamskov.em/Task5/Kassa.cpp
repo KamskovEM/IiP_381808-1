@@ -43,6 +43,7 @@ Kassa::Kassa()
 {
 	tovar = 0;
 	size = 0;
+	buf = 5;
 }
 Kassa::Kassa(int _size)
 {
@@ -54,6 +55,7 @@ Kassa::~Kassa()
 {
 	size = 0;
 	delete[] tovar;
+	tovar = NULL;
 }
 Tovar Kassa::Info(int code)
 {
@@ -71,12 +73,18 @@ int Kassa::Scan(int code)
 	}
 	return -1;
 }
-void Kassa::Delete(int code)
+bool Kassa::Delete(int code)
 {
 	int i = Scan(code);
-	if (tovar[i].count > 0) {
-		tovar[i].count--;
+	if (i != -1)
+	{
+		if (tovar[i].count > 0) 
+		{
+			tovar[i].count--;
+			return true;
+		}
 	}
+	return false;
 }
 void Kassa::CreateCheck()
 {
@@ -102,8 +110,15 @@ void Kassa::CreateCheck()
 	}
 	else cout << "Vash spisok pokypok pyst" << endl;
 }
-void Kassa::Add(int code) {
-	tovar[Scan(code)].count++;
+bool Kassa::Add(int code) { // metod dobavlyaet kolichestvo tovara v check, esli ono >0, to ono v metode "CreateCheck" ono bydet vivedeno na ekran
+	int i = Scan(code);
+	if  (i != -1)
+	{
+		tovar[i].count++;
+		return true;
+
+	}
+		return false;
 }
 ostream & operator << (ostream & stream, Kassa const &T) {
 	stream << T.size << endl;
@@ -117,7 +132,7 @@ istream & operator >> (istream & stream, Kassa &T) {
 	while(T.size >= T.buf) {
 		delete[] T.tovar;
 		T.buf += T.del;
-		T.tovar = new Tovar[T.size];
+		T.tovar = new Tovar[T.buf];
 	}
 	for (int i = 0; i < T.size; i++) {
 		stream >> T.tovar[i];

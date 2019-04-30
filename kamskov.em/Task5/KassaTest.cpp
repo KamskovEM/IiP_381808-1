@@ -26,17 +26,24 @@ int main() {
 		case 1:
 			cout << "Vvedite kod tovara - ";
 			cin >> t;
-			T.Add(t);
+			if (!T.Add(t)) 
+			{
+				cout << "Kod nedejstvitelen" << endl;
+			}
 			break;
 		case 2:
 			cout << "Vvedite kod tovara - ";
 			cin >> t;
-			T.Delete(t);
+			if (!T.Delete(t))
+			{
+				cout << "Kod nedejstvitelen" << endl;
+			}
 			break;
 		case 3:
 			cout << "Vvedite kod tovara - ";
 			cin >> t;
-			cout << T.Info(t);
+			if (T.Scan(t) != -1) { cout << T.Info(t); }
+			else cout << "Kod nedejstvitelen" << endl;
 			break;
 		case 4:
 			T.CreateCheck();
